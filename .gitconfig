@@ -1,0 +1,8 @@
+[user]
+	email = dduncan@intelliair.com
+	name = David Duncan
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore.global
+[merge]
+	ff = false
