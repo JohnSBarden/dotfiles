@@ -1,0 +1,78 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+export NVM_DIR="/home/dduncan/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+source /home/dduncan/antigen/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
+antigen theme agnoster
+
+# Tell antigen that you're done.
+antigen apply
+
+#powerline?
+export POWERLINE_CONFIG_COMMAND=/home/dduncan/.local/bin/powerline-config 
+
+# add composer to path
+PATH=$PATH:~/.config/composer/vendor/bin/  
+PATH=$HOME/.bin/:$PATH
+
+# add yarn to bin
+PATH=$PATH:`yarn global bin`
+
+# configure editors
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+source ~/.aliases
+
+# gruvbox color theme?
+source ~/gruvbox/gruvbox_256palette.sh
+
+source ~/.intellifarms
+
+alias bs="browser-sync start --proxy 'localhost:4200' --files 'dist/*'"
+
+alias kctl="kubectl"
+alias kpods="kctl get pods"
+alias klogs="kctl logs -f"
+alias kexec="kctl exec -it"
+
+if [ $commands[kubectl] ]; then
+    source <(kubectl completion zsh)
+fi
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
+
+
+#golang
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
