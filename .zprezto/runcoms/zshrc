@@ -54,6 +54,7 @@ source ~/.aliases
 
 # gruvbox color theme?
 source ~/gruvbox/gruvbox_256palette.sh
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 source ~/.intellifarms
 
