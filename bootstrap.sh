@@ -18,6 +18,27 @@ chromium() {
     sudo apt-get install chromium-browser
 }
 
+virtualbox() {
+    # todo prefer using a specific file so idempotent
+    echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" | sudo tee -a /etc/apt/sources.list
+    wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+    wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+}
+
+minikube() {
+    curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+}
+
+kubectx() {
+    git clone https://github.com/ahmetb/kubectx.git $HOME/kubectx
+    ln -s $HOME/kubectx/kubectx $HOME/.bin/kubectx
+    ln -s $HOME/kubectx/kubens $HOME/.bin/kubens
+}
+
+kubeps1() {
+    git clone https://github.com/jonmosco/kube-ps1.git $HOME/kube-ps1
+}
+
 docker(){
     sudo apt-get install \
     apt-transport-https \
