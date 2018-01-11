@@ -12,11 +12,13 @@ fi
 # Grab antigen our zsh package manager
 source /home/dduncan/antigen/antigen.zsh
 
+# grab our aliases if they exist
 if [[ -e "${HOME}/.aliases" ]]; then
   source "${HOME}/.aliases"
 fi
 
 # gruvbox color theme
+# pretty sure we can remove this
 #source ~/gruvbox/gruvbox_256palette.sh
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
