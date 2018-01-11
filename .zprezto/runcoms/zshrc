@@ -12,6 +12,14 @@ fi
 # Grab antigen our zsh package manager
 source /home/dduncan/antigen/antigen.zsh
 
+if [[ -e "${HOME}/.aliases" ]]; then
+  source "${HOME}/.aliases"
+fi
+
+# gruvbox color theme
+#source ~/gruvbox/gruvbox_256palette.sh
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -38,11 +46,15 @@ export POWERLINE_CONFIG_COMMAND=/home/dduncan/.local/bin/powerline-config
 export NVM_DIR="/home/dduncan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# add our personal bin to path
+PATH=$HOME/.bin/:$PATH
+
 # add composer to path
 PATH=$PATH:~/.config/composer/vendor/bin/
 
-# add our personal bin to path
-PATH=$HOME/.bin/:$PATH
+#golang
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
 
 # add yarn to bin
 PATH=$PATH:`yarn global bin`
@@ -50,15 +62,6 @@ PATH=$PATH:`yarn global bin`
 # configure editors
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
-source ~/.aliases
-
-# gruvbox color theme?
-source ~/gruvbox/gruvbox_256palette.sh
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
-
-# work variables
-source ~/.intellifarms
 
 # easy browser sync
 alias bs="browser-sync start --proxy 'localhost:4200' --files 'dist/*'"
@@ -78,7 +81,6 @@ fi
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [[ -f /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
 
+# work variables
+source ~/.intellifarms
 
-#golang
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
