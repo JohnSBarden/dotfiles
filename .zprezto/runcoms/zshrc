@@ -1,8 +1,7 @@
 #
-# Executes commands at the start of an interactive session.
+# .zshrc config
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+# basic vim, golang, nvm, setup
 #
 
 # Source Prezto.
@@ -10,11 +9,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-
-export NVM_DIR="/home/dduncan/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
+# Grab antigen our zsh package manager
 source /home/dduncan/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
@@ -39,8 +34,14 @@ antigen apply
 #powerline?
 export POWERLINE_CONFIG_COMMAND=/home/dduncan/.local/bin/powerline-config 
 
+# nvm
+export NVM_DIR="/home/dduncan/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # add composer to path
-PATH=$PATH:~/.config/composer/vendor/bin/  
+PATH=$PATH:~/.config/composer/vendor/bin/
+
+# add our personal bin to path
 PATH=$HOME/.bin/:$PATH
 
 # add yarn to bin
@@ -56,15 +57,19 @@ source ~/.aliases
 source ~/gruvbox/gruvbox_256palette.sh
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
+# work variables
 source ~/.intellifarms
 
+# easy browser sync
 alias bs="browser-sync start --proxy 'localhost:4200' --files 'dist/*'"
 
+# k8s aliases, move these to ~/.aliases
 alias kctl="kubectl"
 alias kpods="kctl get pods"
 alias klogs="kctl logs -f"
 alias kexec="kctl exec -it"
 
+# k8s completion
 if [ $commands[kubectl] ]; then
     source <(kubectl completion zsh)
 fi
