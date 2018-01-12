@@ -10,7 +10,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Grab antigen our zsh package manager
-source /home/dduncan/antigen/antigen.zsh
+source $HOME/antigen/antigen.zsh
 
 # grab our aliases if they exist
 if [[ -e "${HOME}/.aliases" ]]; then
@@ -42,10 +42,10 @@ antigen theme agnoster
 antigen apply
 
 #powerline?
-export POWERLINE_CONFIG_COMMAND=/home/dduncan/.local/bin/powerline-config 
+export POWERLINE_CONFIG_COMMAND=$HOME/.local/bin/powerline-config 
 
 # nvm
-export NVM_DIR="/home/dduncan/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # add our personal bin to path
@@ -65,16 +65,6 @@ PATH=$PATH:`yarn global bin`
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-# easy browser sync
-alias bs="browser-sync start --proxy 'localhost:4200' --files 'dist/*'"
-
-# k8s aliases, move these to ~/.aliases
-alias kctl="kubectl"
-alias kget="kctl get"
-alias kpods="kctl get pods"
-alias klogs="kctl logs -f"
-alias kexec="kctl exec -it"
-
 # k8s completion
 if [ $commands[kubectl] ]; then
     source <(kubectl completion zsh)
@@ -88,7 +78,7 @@ fi
 
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
+[[ -f $HOME/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . $HOME/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
 
 # work variables
 source ~/.intellifarms

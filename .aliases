@@ -1,0 +1,18 @@
+alias nuke="rm -rf bower_components node_modules dist tmp && npm cache clean && bower cache clean"
+alias mount-henry='sudo mount -t cifs -o user=guest,pass=guest //HENRY/public /mnt/henry'
+alias mount-perten='sudo mount -t cifs -o user=ddremote,pass=tomisawesome,file_mode=0777,dir_mode=0777       //10.128.20.38/Users /mnt/perten'
+
+function curlperf {
+      curl  -s -w "%{time_connect} + %{time_starttransfer} = %{time_total}\n" "("
+}
+
+# easy browser sync
+alias bs="browser-sync start --proxy 'localhost:4200' --files 'dist/*'"
+
+# k8s aliases, move these to ~/.aliases
+alias kctl="kubectl"
+alias kget="kctl get"
+alias kpods="kctl get pods"
+alias klogs="kctl logs -f"
+alias kexec="kctl exec -it"
+
