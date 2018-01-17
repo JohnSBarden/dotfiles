@@ -16,3 +16,12 @@ alias kpods="kctl get pods"
 alias klogs="kctl logs -f"
 alias kexec="kctl exec -it"
 
+function kuberun {
+    [[ $# -lt 2 ]] && echo "Invalid number of arguments, [SERVICE_NAME] [IMAGE_NAME] [...COMMAND]"; return 1;
+
+    SERVICE_NAME=$1
+    IMAGE_NAME=$2
+    shift 2;
+    kubectl run $SERVICE_NAME --image=$IMAGE_NAME --restart=Never --quiet -i --rm -- "$@"
+}
+
