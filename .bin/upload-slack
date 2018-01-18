@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+TOKEN=xoxb-134704412116-NhEWfryVkyDqITnQxhYfBWxq
+
+curl -F file=@$1 -F channels="\@nlincoln" -F token=${TOKEN} https://slack.com/api/files.upload
