@@ -1,6 +1,8 @@
 alias nuke="rm -rf bower_components node_modules dist tmp && npm cache clean && bower cache clean"
-alias mount-henry='sudo mount -t cifs -o user=guest,pass=guest //HENRY/public /mnt/henry'
-alias mount-perten='sudo mount -t cifs -o user=ddremote,pass=tomisawesome,file_mode=0777,dir_mode=0777       //10.128.20.38/Users /mnt/perten'
+
+# move to bins
+#alias mount-henry='sudo mount -t cifs -o user=guest,pass=guest //HENRY/public /mnt/henry'
+#alias mount-perten='sudo mount -t cifs -o user=ddremote,pass=tomisawesome,file_mode=0777,dir_mode=0777       //10.128.20.38/Users /mnt/perten'
 
 function curlperf {
       curl  -s -w "%{time_connect} + %{time_starttransfer} = %{time_total}\n" "("
@@ -25,3 +27,6 @@ function kuberun {
     kubectl run $SERVICE_NAME --image=$IMAGE_NAME --restart=Never --quiet -i --rm -- "$@"
 }
 
+function gnew {
+    git add . && git stash && git checkout master && git checkout -b $1 && git stash pop
+}
