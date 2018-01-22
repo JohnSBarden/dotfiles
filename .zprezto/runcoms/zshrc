@@ -35,6 +35,8 @@ antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
 
+# warp directory
+
 # k8s aliases
 antigen bundle kubectl
 
@@ -90,4 +92,6 @@ fi
 
 # work variables
 source ~/.intellifarms
-
+wd() {
+  . /home/dduncan/bin/wd/wd.sh
+}
