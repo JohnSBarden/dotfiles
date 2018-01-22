@@ -22,6 +22,9 @@ fi
 #source ~/gruvbox/gruvbox_256palette.sh
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
+#default folder our NVM install goes to
+export NVM_DIR="$HOME/.nvm"
+
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -31,7 +34,18 @@ antigen bundle heroku
 antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
+
+# k8s aliases
 antigen bundle kubectl
+
+# not zsh plugin but gives us kubectx bins
+antigen bundle ahmetb/kubectx
+
+# remind us on aliases
+antigen bundle djui/alias-tips
+
+# nvm bins and source
+antigen bundle lukechilds/zsh-nvm
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -45,34 +59,24 @@ antigen apply
 #powerline?
 export POWERLINE_CONFIG_COMMAND=$HOME/.local/bin/powerline-config 
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # add our personal bin to path
-PATH=$HOME/.bin/:$PATH
+export PATH=$HOME/.bin/:$PATH
 
 # add composer to path
-PATH=$PATH:~/.config/composer/vendor/bin/
+export PATH=$PATH:~/.config/composer/vendor/bin/
 
 #golang
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 
 # add yarn to bin
-PATH=$PATH:`yarn global bin`
-
-# kubectx to path
-PATH=$PATH:$HOME/kubectx
+export PATH=$PATH:`yarn global bin`
 
 # configure editors
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # k8s completion
-#if [ $commands[kubectl] ]; then
-#    source <(kubectl completion zsh)
-#fi
 
 # adding kubeps1
 if [[ -e "${HOME}/kube-ps1/kube-ps1.sh" ]]; then

@@ -187,8 +187,8 @@ bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 #bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 # scrot & gimp - root
-bindsym --release Print exec scrot -s /tmp/`date +%Y-%m-%d_%H:%M:%S`.png
-bindsym --release $mod+Print exec scrot --delay 6 -s /tmp/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release Print exec scrot -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release $mod+Print exec scrot --delay 6 -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # bind i3lock to scroll lock
 #bindsym $mod+Scroll_Lock exec i3lock

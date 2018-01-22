@@ -3,20 +3,24 @@
 # Delay before starting
 DELAY=5
 
+OUTPUT_DIR=$HOME/Pictures/gif
+OUTPUT_FILE=`date +%Y-%m-%d_%H:%M:%S`.gif
+OUTPUT_PATH=$OUTPUT_DIR/$OUTPUT_FILE
+
 
 # Duration and output file
 if [ $# -gt 0 ]; then
     D="--duration=$@"
 else
-    if [ ! -d ~/tmp/gif ]; then
-        mkdir -p ~/tmp/gif
+    if [ ! -d $OUTPUT_PATH ]; then
+        mkdir -p $OUTPUT_DIR
     else
-        if [ -f ~/tmp/gif/recorded.gif ]; then
-            rm ~/tmp/gif/recorded.gif
+        if [ -f $OUTPUT_PATH ]; then
+            rm $OUTPUT_PATH
         fi
     fi
-    echo Default recording duration 5s to ~/tmp/gif/recorded.gif
-    D="--duration=5 ~/tmp/gif/recorded.gif"
+    echo Default recording duration 5s to $OUTPUT_PATH
+    D="--duration=5 $OUTPUT_PATH"
 fi
 
 # xrectsel from https://github.com/lolilolicon/xrectsel
@@ -29,5 +33,5 @@ for (( i=$DELAY; i>0; --i )) ; do
 done
 
 # byzanz-record --verbose --delay=0 ${ARGUMENTS} $D
-byzanz-record --duration=50 --delay=0 ${ARGUMENTS} ~/tmp/gif/recorded.gif
+byzanz-record --duration=50 --delay=0 ${ARGUMENTS} $OUTPUT_PATH
 
