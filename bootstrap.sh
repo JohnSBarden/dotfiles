@@ -7,11 +7,11 @@ baselibs(){
 }
 
 vim() {
-    sudo apt-get install vim
+    sudo apt-get install -y vim
 }
 
 i3() {
-    sudo apt-get install i3 i3lock
+    sudo apt-get install -y i3 i3lock
 }
 
 chromium() {
@@ -39,8 +39,19 @@ kubeps1() {
     git clone https://github.com/jonmosco/kube-ps1.git $HOME/kube-ps1
 }
 
+yarn() {
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt-get update && sudo apt-get install -y yarn
+}
+
+nvm() {
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+}
+
+
 docker(){
-    sudo apt-get install \
+    sudo apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -56,11 +67,10 @@ docker(){
        stable"
 
     sudo apt-get update
-    sudo apt-get install docker-ce
+    sudo apt-get install -y docker-ce
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
-
+    curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
 }
 
 vundle(){
@@ -88,10 +98,12 @@ prezto(){
     ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile
     ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv
     ln -s ~/.zprezto/runcoms/zshrc ~/.zshrc
+    
+    echo "Changing Shell:"
     chsh -s $(which zsh)
 }
 
-antigen(){
+antigen() {
     git clone https://github.com/zsh-users/antigen.git ~/antigen
 }
 
@@ -110,7 +122,7 @@ powerlinefont() {
 }
 
 powerline() {
-    sudo apt-get install python3.6
+    sudo apt-get install -y python3.6
     wget https://bootstrap.pypa.io/get-pip.py
     sudo python get-pip.py
     sudo pip install powerline-status
@@ -118,8 +130,8 @@ powerline() {
 
 addkube() {
 	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl
-	chmod +x ./kubectlsudo 
-	mv ./kubectl /usr/local/bin/kubectl
+	chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl
 }
 
 configureWatches() {
@@ -128,6 +140,8 @@ configureWatches() {
 }
 
 baselibs
+yarn
+nvm
 vim
 i3
 chromium
@@ -137,9 +151,12 @@ powerline
 vundle
 docker  
 addkube
+kubectx
+virtualbox
+minikube
+
 configureWatches
 
 
 echo "==========================="
 echo "Everything went ok - Reboot!"
-0
