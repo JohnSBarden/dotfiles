@@ -139,12 +139,18 @@ configureWatches() {
     sudo sysctl -p
 }
 
+_jetbrains-toolbox() {
+    JETBRAINS_VERSION="jetbrains-toolbox-1.6.2914"
+    wget https://download.jetbrains.com/toolbox/$JETBRAIN_VERSION.tar.gz &&
+    tar -zxf $JETBRAINS_VERSION.tar.gz
+    ./$JETBRAINS_VERSION/jetbrains-toolbox
+}
+
+#always
 baselibs
 yarn
 nvm
 vim
-i3
-chromium
 prezto
 powerlinefont
 powerline
@@ -152,11 +158,16 @@ vundle
 docker  
 addkube
 kubectx
+
+# additional libs if desktop
+if [ $DESKTOP_SESSION ]; then
+i3
+chromium
 virtualbox
 minikube
-
+_jetbrains-toolbox
 configureWatches
-
+fi
 
 echo "==========================="
 echo "Everything went ok - Reboot!"
