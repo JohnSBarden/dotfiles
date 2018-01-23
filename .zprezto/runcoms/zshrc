@@ -78,14 +78,6 @@ export PATH=$PATH:`yarn global bin`
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-# k8s completion
-
-# adding kubeps1
-if [[ -e "${HOME}/kube-ps1/kube-ps1.sh" ]]; then
-    source $HOME/kube-ps1/kube-ps1.sh
-    PROMPT='$(kube_ps1)'$PROMPT
-fi
-
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [[ -f $HOME/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . $HOME/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
