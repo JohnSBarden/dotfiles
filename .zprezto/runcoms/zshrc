@@ -20,7 +20,7 @@ fi
 # gruvbox color theme
 # pretty sure we can remove this
 #source ~/gruvbox/gruvbox_256palette.sh
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+#source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 #default folder our NVM install goes to
 export NVM_DIR="$HOME/.nvm"
@@ -34,25 +34,15 @@ antigen bundle heroku
 antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
+antigen bundle vundle
+antigen bundle wd
 
-# warp directory
-
-# k8s aliases
 antigen bundle kubectl
-
-# not zsh plugin but gives us kubectx bins
 antigen bundle ahmetb/kubectx
-
-# remind us on aliases
 antigen bundle djui/alias-tips
-
-# nvm bins and source
 antigen bundle lukechilds/zsh-nvm
-
-# Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-# Load the theme.
 antigen theme agnoster
 
 # Tell antigen that you're done.
@@ -84,6 +74,3 @@ export EDITOR="$VISUAL"
 
 # work variables
 source ~/.intellifarms
-wd() {
-  . /home/dduncan/bin/wd/wd.sh
-}
