@@ -42,6 +42,8 @@ antigen bundle djui/alias-tips
 antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-syntax-highlighting
 
+antigen bundle guimeira/i3lock-fancy-multimonitor
+
 antigen theme agnoster
 
 # Tell antigen that you're done.

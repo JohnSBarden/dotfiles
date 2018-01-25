@@ -194,7 +194,7 @@ bindsym --release $mod+Print exec scrot --delay 6 -s $HOME/Pictures/`date +%Y-%m
 #bindsym $mod+Scroll_Lock exec i3lock
 
 # bind fancy lock screen 
-bindsym $mod+Scroll_Lock exec /home/dduncan/.i3/i3lock-fancy-multimonitor/lock
+bindsym $mod+Scroll_Lock exec $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock
  
 # remove border
 for_window [class="^.*"] border pixel 0
