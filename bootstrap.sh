@@ -29,11 +29,6 @@ minikube() {
     curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 }
 
-kubectx() {
-    git clone https://github.com/ahmetb/kubectx.git $HOME/kubectx
-    ln -s $HOME/kubectx/kubectx $HOME/.bin/kubectx
-    ln -s $HOME/kubectx/kubens $HOME/.bin/kubens
-}
 
 kubeps1() {
     git clone https://github.com/jonmosco/kube-ps1.git $HOME/kube-ps1
@@ -78,37 +73,13 @@ vundle(){
     vim +PluginInstall +qall
 }
 
-prezto(){
+_install-zsh(){
     clear
     sudo apt-get install -y git
     sudo apt-get update && sudo apt-get install -y zsh
-    # Get prezto
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto
-
-    # Backup zsh config if it exists
-    if [ -f ~/.zshrc ];
-       then
-           mv ~/.zshrc ~/.zshrc.backup
-    fi
-
-    # Create links to zsh config files
-    ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin
-    ln -s ~/.zprezto/runcoms/zlogout ~/.zlogout
-    ln -s ~/.zprezto/runcoms/zpreztorc ~/.zpreztorc
-    ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile
-    ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv
-    ln -s ~/.zprezto/runcoms/zshrc ~/.zshrc
     
     echo "Changing Shell:"
     chsh -s $(which zsh)
-}
-
-antigen() {
-    git clone https://github.com/zsh-users/antigen.git ~/antigen
-}
-
-ohmyzsh(){
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
 powerlinefont() {
@@ -151,13 +122,12 @@ baselibs
 yarn
 nvm
 vim
-prezto
+_install-zsh
 powerlinefont
 powerline
 vundle
 docker  
 addkube
-kubectx
 
 # additional libs if desktop
 if [ $DESKTOP_SESSION ]; then
