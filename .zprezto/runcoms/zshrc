@@ -14,8 +14,7 @@ fi
 
 # gruvbox color theme
 # pretty sure we can remove this
-#source ~/gruvbox/gruvbox_256palette.sh
-#source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 #default folder our NVM install goes to
 export NVM_DIR="$HOME/.nvm"
@@ -62,10 +61,6 @@ export PATH=$PATH:`yarn global bin`
 # configure editors
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f $HOME/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . $HOME/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
 
 # work variables
 source ~/.intellifarms
