@@ -1,11 +1,16 @@
 #
 # .zshrc config
 #
-# basic vim, golang, nvm, setup
+# basic zsh/antigen, vim, golang, nvm, setup
 #
 
-# Grab antigen our zsh package manager
-source $HOME/antigen/antigen.zsh
+# Grab antigen if we dont have it
+if [[ ! -e $HOME/.antigen/antigen.zsh ]]; then
+    git clone https://github.com/zsh-users/antigen.git ~/.antigen
+fi
+
+# source antigen now
+source $HOME/.antigen/antigen.zsh
 
 # grab our aliases if they exist
 if [[ -e "${HOME}/.aliases" ]]; then
