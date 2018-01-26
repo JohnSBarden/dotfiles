@@ -41,7 +41,7 @@ antigen bundle ahmetb/kubectx
 antigen bundle djui/alias-tips
 antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-syntax-highlighting
-
+antigen bundle jimeh/zsh-peco-history
 antigen bundle guimeira/i3lock-fancy-multimonitor
 
 antigen theme agnoster
@@ -71,3 +71,7 @@ export EDITOR="$VISUAL"
 
 # work variables
 source ~/.intellifarms
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
