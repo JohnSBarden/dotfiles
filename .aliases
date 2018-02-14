@@ -21,3 +21,4 @@ function kuberun {
 function gnew {
     git add . && git stash && git checkout master && git checkout -b $1 && git stash pop
 }
+
