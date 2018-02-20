@@ -18,7 +18,6 @@ if [[ -e "${HOME}/.aliases" ]]; then
 fi
 
 # gruvbox color theme
-# pretty sure we can remove this
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 #default folder our NVM install goes to
