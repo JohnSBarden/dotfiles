@@ -198,3 +198,6 @@ bindsym $mod+Scroll_Lock exec $HOME/.antigen/bundles/guimeira/i3lock-fancy-multi
  
 # remove border
 for_window [class="^.*"] border pixel 0
+
+#autostart
+exec --no-startup-id jetbrains-toolbox
