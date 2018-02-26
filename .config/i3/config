@@ -202,3 +202,4 @@ for_window [class="^.*"] border pixel 0
 
 #autostart
 exec --no-startup-id jetbrains-toolbox
+exec_always --no-startup-id ~/.config/polybar/launch.sh
