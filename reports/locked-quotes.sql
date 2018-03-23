@@ -11,4 +11,4 @@ FROM quotes
   left join quotes_status on (quotes.status = quotes_status.id)
   left join individuals on (quotes.customer = individuals.id)
   left join x2crm.x2_contacts on (x2_contacts.id = individuals.contact_id)
-WHERE locked_dt >= '2018-02-01' AND (status = 2 or status = 9);
+WHERE locked_dt >= date_sub(now(), interval 2 week) AND (status = 2 or status = 9);
