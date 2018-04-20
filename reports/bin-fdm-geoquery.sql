@@ -7,3 +7,5 @@ select count(*) from prod.bins where MBRContains(@arkansas, ST_GeomFromText(CONC
 
 select count(*) from prod.fdm where MBRContains(@missouri, ST_GeomFromText(CONCAT('POINT (', fdm_long, ' ', fdm_lat, ')')));
 select count(*) from prod.fdm where MBRContains(@arkansas, ST_GeomFromText(CONCAT('POINT (', fdm_long, ' ', fdm_lat, ')')));
+
+

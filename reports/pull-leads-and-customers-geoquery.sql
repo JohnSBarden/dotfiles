@@ -1,62 +1,70 @@
-SELECT *,
+SELECT
+  *,
+  (SELECT count(*)
+   FROM bins
+   WHERE bins.group_id = (SELECT group_id
+                          FROM groups
+                          WHERE account_id = c_platform_account_id)) AS numberOfBins,
+  (SELECT count(*)
+   FROM fdm
+   WHERE fdm.group_id = (SELECT group_id
+                         FROM groups
+                         WHERE account_id = c_platform_account_id))  AS numberOfFdms,
   (
     3959 *
     acos(
-        cos( radians( :lat ) ) *
-        cos( radians( lat ) ) *
-        cos(
-            radians( lng ) - radians(  :lng )
-        ) +
-        sin(radians(:lat)) *
-        sin(radians(lat))         )     ) as `distance`
+      cos(radians(:lat)) *
+      cos(radians(lat)) *
+      cos(
+        radians(lng) - radians(:lng)
+      ) +
+      sin(radians(:lat)) *
+      sin(radians(lat))))                                            AS `distance`
 FROM
   (SELECT
-     'LEAD AND MAYBE CUSTOMER' AS lead_type,
-     quotes.lead_source,
-     individuals.first_name       lead_first_name,
-     individuals.last_name        lead_last_name,
-     individuals.email            lead_email,
-     individuals.phone_number     lead_phone_number,
-     individuals.street_address   lead_address,
-     individuals.state            lead_state,
-     individuals.country          lead_country,
-     individuals.zip_code         lead_postal_code,
-     individuals.city             lead_city,
-     users.first_name             salesman_first_name,
-     users.last_name              salesman_last_name,
-     groups.name                  salesman_group_name,
-     x2_accounts.gpsLatitude      lat,
-     x2_accounts.gpsLongitude     lng
-   FROM
-     quote_tool.quotes
-     LEFT JOIN quote_tool.users ON (users.id = quotes.salesman)
-     LEFT JOIN quote_tool.groups ON (users.dealer_id = groups.id)
-     LEFT JOIN quote_tool.individuals ON (individuals.id = quotes.customer)
-     LEFT JOIN x2crm.x2_accounts ON (individuals.account_id = x2_accounts.id)
-   UNION SELECT
-           'CUSTOMER' AS       lead_type,
-           'UNKNOWN'  AS       lead_source,
-           pu.first_name       lead_first_name,
-           pu.last_name        lead_last_name,
-           pu.email            lead_email,
-           pu.phone_number     lead_phone_number,
-           pg.address_shipping lead_address,
-           pg.state_shipping   lead_state,
-           pg.zip_shipping     lead_postal_code,
-           pg.city_shipping    lead_city,
-           pg.country_shipping lead_country,
-           ppg.first_name      salesman_first_name,
-           ppg.last_name       salesman_last_name,
-           ppg.account_name    salesman_group_name,
-           pg.lat              lat,
-           pg.lng              lng
+     x2_contacts.firstName,
+     x2_contacts.lastName,
+     concat(users.first_name, ' ', users.last_name)                    assignedSalesRep,
+     x2_contacts.email,
+     x2_contacts.phone,
+     x2_contacts.phone2,
+     x2_accounts.gpsLatitude                                           lat,
+     x2_accounts.gpsLongitude                                          lng,
+    x2_accounts.city,
+    x2_accounts.state,
+     if(x2_accounts.c_platform_account_id IS NULL, 'LEAD', 'CUSTOMER') customerStatus,
+     x2_accounts.c_platform_account_id,
+     IF((groups.exp_date IS NULL AND groups.sub_exp_date IS NULL AND groups.trial_exp_date IS NULL
+         AND groups.mm_merchandiser_exp_date IS NULL
+         AND groups.mm_producer_exp_date IS NULL
+         AND groups.yf_sc_exp_date IS NULL
+         AND groups.yf_producer_exp_date IS NULL), NULL, (GREATEST(
+       IF(groups.exp_date IS NULL, '0', groups.exp_date),
+       IF(groups.sub_exp_date IS NULL, '0', groups.sub_exp_date),
+       IF(groups.trial_exp_date IS NULL, '0', groups.trial_exp_date),
+       IF(groups.mm_merchandiser_exp_date IS NULL, '0', groups.mm_merchandiser_exp_date),
+       IF(groups.mm_producer_exp_date IS NULL, '0', groups.mm_producer_exp_date),
+       IF(groups.yf_sc_exp_date IS NULL, '0', groups.yf_sc_exp_date),
+       IF(groups.yf_producer_exp_date IS NULL, '0', groups.yf_producer_exp_date)
+     )))                                                               greatest_exp_date,
 
-         FROM
-           prod.users pu
-           INNER JOIN prod.groups pg ON (pu.group_id = pg.group_id)
-           INNER JOIN prod.groups ppg ON (pg.parent_id = ppg.group_id)) a
+     if(groups.subscription_type IS NULL, 'NONE',
+        if(groups.subscription_type = 1, 'PLATFORM', 'LEGACY-DATA'))   subscription_type
 
-where lat is not null
-having distance < 100
+
+   FROM x2crm.x2_accounts
+     LEFT JOIN x2crm.x2_contacts ON (x2_contacts.id = x2_accounts.primary_contact_id)
+     LEFT JOIN quote_tool.users ON (users.id = x2_contacts.c_assignedTo)
+     LEFT JOIN prod.groups
+       ON (groups.account_id = x2_accounts.c_platform_account_id AND x2_accounts.c_platform_account_id != 0)
+
+
+   WHERE x2_accounts.division = 'DIRECT'
+
+  ) innerQuery
+
+HAVING distance < 200
 ;
+
+
 
