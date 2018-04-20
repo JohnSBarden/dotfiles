@@ -41,7 +41,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -show combi -modi combi -lines 10 -width 50 -padding 20"
 
 bindsym $mod+Shift+d exec rofi -show ssh
-bindsym $mod+Shift+t exec phpstorm-modi
+bindsym $mod+Shift+t exec $HOME/.bin/phpstorm-modi
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
