@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-find $HOME -name ".idea" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu | eval '$HOME/.bin/phpstorm $HOME/$(cat)'
+find $HOME/workspace -name ".idea" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu | eval '$HOME/.bin/phpstorm $HOME/$(cat)'
