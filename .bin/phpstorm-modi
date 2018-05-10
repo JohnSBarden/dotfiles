@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-find $HOME/workspace -name ".idea" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu | eval '$HOME/.bin/phpstorm $HOME/$(cat)'
+ROFI_SELECTION=$(find $HOME/workspace -name ".idea" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu -p "storm-modi > ")
+
+[[ ${ROFI_SELECTION} != "" ]] && eval '$HOME/.bin/phpstorm $HOME/${ROFI_SELECTION}'
