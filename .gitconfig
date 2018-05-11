@@ -5,7 +5,7 @@
 	editor = vim
 	excludesfile = /home/dduncan/.gitignore.global
 [merge]
-	ff = false
+	ff = true
 [push]
 	default = simple
 [alias]
