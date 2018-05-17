@@ -69,6 +69,3 @@ export EDITOR="$VISUAL"
 # work variables
 source ~/.intellifarms
 
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/dduncan/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh

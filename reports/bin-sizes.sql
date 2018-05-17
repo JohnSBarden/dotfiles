@@ -1,3 +1,4 @@
+use quote_tool;
 SELECT
   *,
   count(*) count
