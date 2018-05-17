@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+TARGET_DIR=$HOME/workspace/ifp/backend
+cd $TARGET_DIR
+for i in *-api; 
+do cd $TARGET_DIR/$i; 
+eval "${@}"
+done;
+
+ 
