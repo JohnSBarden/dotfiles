@@ -23,3 +23,5 @@ function gnew {
 }
 
 alias exa="exa -l --git"
+
+alias kgns="k get ns"
