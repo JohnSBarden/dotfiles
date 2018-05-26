@@ -42,6 +42,8 @@ bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -show combi -modi comb
 
 bindsym $mod+Shift+d exec rofi -show ssh
 bindsym $mod+Shift+t exec $HOME/.bin/phpstorm-modi
+bindsym $mod+Shift+w exec "$HOME/.bin/cli-modi > /tmp/climodi"
+#bindsym $mod+Shift+w exec "echo $PATH > /tmp/climodi"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that

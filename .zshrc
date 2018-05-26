@@ -33,24 +33,39 @@ antigen bundle command-not-found
 antigen bundle vundle
 antigen bundle wd
 
+# highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# kubernetes
 antigen bundle kubectl
 antigen bundle ahmetb/kubectx
+
+# always been getting more efficient
 antigen bundle djui/alias-tips
+
+# preload nvm for node version management
 antigen bundle lukechilds/zsh-nvm
-antigen bundle zsh-users/zsh-syntax-highlighting
+
+#override ctrl to use peco for fuzzy searching of history
 antigen bundle jimeh/zsh-peco-history
+
+#lock screen, we bind to this in our i3 keybindings 
 antigen bundle guimeira/i3lock-fancy-multimonitor
 
+#load up teiler for imagie / screencasting
+antigen bundle carnage/teiler
+
+#our zsh theme, a popular powerline variant
 antigen theme agnoster
 
 # Tell antigen that you're done.
 antigen apply
 
+# stern completion
+source <(stern --completion=zsh)
+
 #powerline?
 export POWERLINE_CONFIG_COMMAND=$HOME/.local/bin/powerline-config 
-
-# add our personal bin to path
-export PATH=$HOME/.bin/:$PATH
 
 # add composer to path
 export PATH=$PATH:~/.config/composer/vendor/bin/
@@ -69,3 +84,5 @@ export EDITOR="$VISUAL"
 # work variables
 source ~/.intellifarms
 
+# override phpstorm-modi using these webstorm for these projects
+export WEBSTORM_WHITELIST=("ifp/suretrack-pro" "ifp/platform/backend/platform-graphql")

@@ -63,3 +63,4 @@ nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
 :set tabstop=4 softtabstop=4 shiftwidth=4 
 :set expandtab
+:set number
