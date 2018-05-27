@@ -30,10 +30,12 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Plugin 'pangoloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/html5-vim'
 
 " gruvbox
 Plugin 'morhetz/gruvbox'
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,3 +65,5 @@ nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
 :set tabstop=4 softtabstop=4 shiftwidth=4 
 :set expandtab
+
+:set number
