@@ -10,32 +10,46 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" git scripts
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
 
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
+" fzf file finding etc
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-Plugin 'pangoloss/vim-javascript'
+" syntax highlighters 
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'othree/html5-vim'
+Plugin 'leshill/vim-json'
 
-" gruvbox
+" re-eval
+" Plugin 'othree/html5-vim'
+
+Plugin 'vim-airline/vim-airline'
+
+" linting
+Plugin 'w0rp/ale'
+
+" editorconfig
+Plugin 'editorconfig/editorconfig-vim'
+
+" gruvbox theme
 Plugin 'morhetz/gruvbox'
+
+" easy commenting
+Plugin 'tomtom/tcomment_vim'
+
+Plugin 'tpope/vim-surround'
+
+Plugin 'vimwiki/vimwiki'
+
+" Ghost text
+"
+" disabled, py3 problem
+"Plugin 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,7 +66,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
 colorscheme gruvbox
+
 set background=dark
 
 nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
@@ -63,7 +79,48 @@ nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
 nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
 nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
-:set tabstop=4 softtabstop=4 shiftwidth=4 
-:set expandtab
 
-:set number
+" enable syntax highlighting
+syntax enable
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set autoindent
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" enable line numbers
+set number
+set relativenumber
+
+autocmd FileType markdown setlocal shiftwidth=4 softtabstop=4 tabstop=4 wrap linebreak nolist wrap lbr colorcolumn=0 synmaxcol=999999
+
+set laststatus=2
+
+set splitbelow
+set splitright
+
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
+
+" editor config plays nicely with fugitive
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+let g:ale_fixers = {
+\   'javascript': [
+\       'prettier',
+\   ],
+\}
+
+let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+" airline status for ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 1
