@@ -46,6 +46,14 @@ Plugin 'tpope/vim-surround'
 
 Plugin 'vimwiki/vimwiki'
 
+Plugin 'FooSoft/vim-argwrap'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'machakann/vim-highlightedyank'
+Plugin 'airblade/vim-gitgutter'
+
 " Ghost text
 "
 " disabled, py3 problem
@@ -115,7 +123,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 let g:ale_fixers = {
 \   'javascript': [
-\       'prettier',
+\       'eslint', 'prettier',
 \   ],
 \}
 
@@ -124,3 +132,17 @@ let g:ale_sign_column_always = 1
 " airline status for ale
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
+
+" argwrap bind
+nnoremap <silent> <leader>a :ArgWrap<CR>
+nnoremap <silent> <leader>s :ALEFix<CR>
+nnoremap <silent> <leader>w :ALELint<CR>
+
+" start nerdtree if no input file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" nerd tree open
+map <C-n> :NERDTreeToggle<CR>
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
