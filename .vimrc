@@ -54,6 +54,14 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'airblade/vim-gitgutter'
 
+" Plugin 'autozimu/LanguageClient-neovim'
+
+" (Optional) Multi-entry selection UI.
+" Plugin 'junegunn/fzf'
+
+" Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+
 " Ghost text
 "
 " disabled, py3 problem
@@ -146,3 +154,18 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" LSP client config
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
