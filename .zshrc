@@ -53,7 +53,8 @@ antigen bundle jimeh/zsh-peco-history
 antigen bundle guimeira/i3lock-fancy-multimonitor
 
 #load up teiler for imagie / screencasting
-antigen bundle carnage/teiler
+# todo :: 
+# antigen bundle carnage/teiler
 
 #our zsh theme, a popular powerline variant
 antigen theme agnoster
