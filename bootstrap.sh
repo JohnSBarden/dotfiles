@@ -13,7 +13,11 @@ exa(){
 }
 
 vim() {
+    # install as fallback just in case
     sudo apt-get install -y vim
+    sudo apt-add-repository ppa:neovim-ppa/stable
+    sudo apt-get update
+    sudo apt-get install neovim
 }
 
 i3() {
