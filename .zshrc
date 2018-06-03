@@ -64,6 +64,9 @@ antigen apply
 # stern completion
 source <(stern --completion=zsh)
 
+# add our personal bin to path
+export PATH=$HOME/.bin/:$PATH
+
 #powerline?
 export POWERLINE_CONFIG_COMMAND=$HOME/.local/bin/powerline-config 
 
