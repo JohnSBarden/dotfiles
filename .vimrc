@@ -10,30 +10,62 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" git scripts
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
 
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
+" fzf file finding etc
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+" syntax highlighters 
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'leshill/vim-json'
 
+" re-eval
+" Plugin 'othree/html5-vim'
 
-" gruvbox
+Plugin 'vim-airline/vim-airline'
+
+" linting
+Plugin 'w0rp/ale'
+
+" editorconfig
+Plugin 'editorconfig/editorconfig-vim'
+
+" gruvbox theme
 Plugin 'morhetz/gruvbox'
 
+" easy commenting
+Plugin 'tomtom/tcomment_vim'
+
+Plugin 'tpope/vim-surround'
+
+Plugin 'vimwiki/vimwiki'
+
+Plugin 'FooSoft/vim-argwrap'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'machakann/vim-highlightedyank'
+Plugin 'airblade/vim-gitgutter'
+
+" Plugin 'autozimu/LanguageClient-neovim'
+
+" (Optional) Multi-entry selection UI.
+" Plugin 'junegunn/fzf'
+
+" Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+
+" Ghost text
+"
+" disabled, py3 problem
+"Plugin 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -50,7 +82,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
 colorscheme gruvbox
+
 set background=dark
 
 nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
@@ -61,6 +95,76 @@ nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
 nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
 nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
-:set tabstop=4 softtabstop=4 shiftwidth=4 
-:set expandtab
-:set number
+" enable syntax highlighting
+syntax enable
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set autoindent
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" enable line numbers
+set number
+set relativenumber
+
+autocmd FileType markdown setlocal shiftwidth=4 softtabstop=4 tabstop=4 wrap linebreak nolist wrap lbr colorcolumn=0 synmaxcol=999999
+
+set laststatus=2
+
+set splitbelow
+set splitright
+
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
+
+" editor config plays nicely with fugitive
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+let g:ale_fixers = {
+\   'javascript': [
+\       'eslint', 'prettier',
+\   ],
+\}
+
+let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+" airline status for ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 1
+
+" argwrap bind
+nnoremap <silent> <leader>a :ArgWrap<CR>
+nnoremap <silent> <leader>s :ALEFix<CR>
+nnoremap <silent> <leader>w :ALELint<CR>
+
+" start nerdtree if no input file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" nerd tree open
+map <C-n> :NERDTreeToggle<CR>
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" LSP client config
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>

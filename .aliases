@@ -25,3 +25,11 @@ function gnew {
 alias exa="exa -l --git"
 
 alias kgns="k get ns"
+
+#vim becomes nvim
+alias v="nvim"
+alias vim="v"
+alias vi="v"
+
+alias vimdiff='nvim -d'
+export EDITOR=nvim
