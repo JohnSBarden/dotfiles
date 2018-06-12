@@ -127,6 +127,13 @@ _jetbrains-toolbox() {
     ./$JETBRAINS_VERSION/jetbrains-toolbox
 }
 
+_peco() {
+    wget https://github.com/peco/peco/releases/download/v0.5.3/peco_linux_amd64.tar.gz &&
+    tar -zxf peco_linux_amd64.tar.gz
+    chmod +x peco_linux_amd64/peco
+    sudo mv peco_linux_amd64/peco /usr/local/bin/peco
+}
+
 #always
 baselibs
 yarn

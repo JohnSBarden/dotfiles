@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Bootstrap for when we clone/update dotfiles
+
+# check to see if we have vundle installed
+if [[ ! -e $HOME/.vim/bundle ]]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+
+# check to make sure we have plugins installed
+vim +PluginInstall +qall
