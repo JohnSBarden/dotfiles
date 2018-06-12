@@ -142,7 +142,7 @@ let g:ale_completion_enabled = 1
 
 " argwrap bind
 nnoremap <silent> <leader>a :ArgWrap<CR>
-nnoremap <silent> <leader>s :ALEFix<CR>
+nnoremap <silent> <leader>f :ALEFix<CR>
 nnoremap <silent> <leader>w :ALELint<CR>
 
 " start nerdtree if no input file
@@ -168,3 +168,6 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" quicksave
+noremap <Leader>s :update<CR>
