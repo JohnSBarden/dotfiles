@@ -2,7 +2,7 @@
 ROFI_SELECTION=$(find $HOME/workspace -maxdepth 6 -name ".idea"  -not -path "*/node_modules/*" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu -p "storm-modi > ")
 
 WEBSTORM_PATH="${WEBSTORM_PATH:-$HOME/.bin/webstorm}"
-PHPSTORM_PATH="${PHPSTORM_PATH:-$HOME/.bin/phpstorm}"
+PHPSTORM_PATH="${PHPSTORM_PATH:-$(which phpstorm)}"
 
 _containsElement() {
   local e match="$1"
@@ -36,7 +36,7 @@ _main() {
         local stormPath=$(_selectStormPath "$ROFI_SELECTION")
 
         echo "$stormPath"
-	    eval '$HOME/.bin/phpstorm $HOME/${ROFI_SELECTION}'
+	    eval '$PHPSTORM_PATH $HOME/${ROFI_SELECTION}'
     fi
 }
 
