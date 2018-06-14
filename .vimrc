@@ -39,6 +39,9 @@ Plugin 'editorconfig/editorconfig-vim'
 " gruvbox theme
 Plugin 'morhetz/gruvbox'
 
+" emmet completion
+Plugin 'mattn/emmet-vim'
+
 " easy commenting
 Plugin 'tomtom/tcomment_vim'
 
@@ -54,6 +57,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'airblade/vim-gitgutter'
 
+" TODO - Set up LSP and vim
 " Plugin 'autozimu/LanguageClient-neovim'
 
 " (Optional) Multi-entry selection UI.
@@ -120,6 +124,14 @@ set laststatus=2
 set splitbelow
 set splitright
 
+" remap split navigation so we can move splits with just CTRL+HJKL instead of
+" CTRL+W HJKL
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" unbind arrow keys so that we are forced to use homerow navigation
 "noremap <Up> <NOP>
 "noremap <Down> <NOP>
 "noremap <Left> <NOP>
@@ -154,6 +166,18 @@ map <C-n> :NERDTreeToggle<CR>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" vimiwiki config / overrides
+let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+
+" emmet config
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
+
+" TODO :: LSP config - none of this is working currently
 " LSP client config
 set hidden
 

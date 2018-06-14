@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ROFI_SELECTION=$(find $HOME/workspace -maxdepth 6 -name ".idea"  -not -path "*/node_modules/*" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu -p "storm-modi > ")
 
-WEBSTORM_PATH="${WEBSTORM_PATH:-$HOME/.bin/webstorm}"
+WEBSTORM_PATH="${WEBSTORM_PATH:-$(which webstorm)}"
 PHPSTORM_PATH="${PHPSTORM_PATH:-$(which phpstorm)}"
 
 _containsElement() {

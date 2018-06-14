@@ -88,5 +88,6 @@ export EDITOR="$VISUAL"
 # work variables
 source ~/.intellifarms
 
-# override phpstorm-modi using these webstorm for these projects
-export WEBSTORM_WHITELIST=("ifp/suretrack-pro" "ifp/platform/backend/platform-graphql")
+# override phpstorm-modi using these webstorm for these projectsi
+declare -a WEBSTORM_WHITELIST=("ifp/suretrack-pro" "ifp/platform/backend/platform-graphql" "ifp/platform")
+export WEBSTORM_WHITELIST
