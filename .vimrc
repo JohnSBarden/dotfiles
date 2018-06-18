@@ -195,3 +195,5 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " quicksave
 noremap <Leader>s :update<CR>
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
