@@ -48,6 +48,8 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround'
 
 Plugin 'vimwiki/vimwiki'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'jkramer/vim-checkbox'
 
 Plugin 'FooSoft/vim-argwrap'
 
@@ -195,5 +197,11 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " quicksave
 noremap <Leader>s :update<CR>
+
+" quick edit vimrc
+nnoremap <leader>ev :vsplit $HOME/.vimrc<cr>
+
+" source vimrc
+nnoremap <leader>sv :source $HOME/.vimrc<cr>
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
