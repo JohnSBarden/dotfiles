@@ -1,3 +1,5 @@
+use quote_tool;
+
 SELECT
   *,
   (SELECT count(*)
@@ -52,19 +54,19 @@ FROM
         if(groups.subscription_type = 1, 'PLATFORM', 'LEGACY-DATA'))   subscription_type
 
 
-   FROM x2crm.x2_accounts
+   FROM quote_tool.quotes
+   left join individuals on (individuals.id = quotes.customer)
+   left join x2crm.x2_accounts on (individuals.account_id = x2_accounts.id)
      LEFT JOIN x2crm.x2_contacts ON (x2_contacts.id = x2_accounts.primary_contact_id)
      LEFT JOIN quote_tool.users ON (users.id = x2_contacts.c_assignedTo)
      LEFT JOIN prod.groups
        ON (groups.account_id = x2_accounts.c_platform_account_id AND x2_accounts.c_platform_account_id != 0)
 
 
-   WHERE x2_accounts.division = 'DIRECT'
 
   ) innerQuery
 
 HAVING distance < 200
 ;
-
 
 
