@@ -7,3 +7,5 @@ graphql:~/workspace/ifp/backend/platform-graphql
 stp:~/workspace/ifp/suretrack-pro
 servers:~/workspace/servers
 wiki:~/vimwiki
+stf:~/workspace/ifp/platform
+gql:~/workspace/ifp/backend/platform-graphql
