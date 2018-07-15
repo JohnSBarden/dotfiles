@@ -4,40 +4,22 @@ ROFI_SELECTION=$(find $HOME/workspace -maxdepth 6 -name ".idea"  -not -path "*/n
 WEBSTORM_PATH="${WEBSTORM_PATH:-$(which webstorm)}"
 PHPSTORM_PATH="${PHPSTORM_PATH:-$(which phpstorm)}"
 
-_containsElement() {
-  local e match="$1"
-  shift
-  for e; do [[ "$e" == "$match" ]] && echo 0; done
-  echo 1
-}
-
 _selectStormPath() {
-    # match our $1 to 
-    echo "${WEBSTORM_WHITELIST[@]}"
-    local isWebStormPath=$(_containsElement $1 "${WEBSTORM_WHITELIST[@]}")
-    echo "$isWebStormPath"
-
-	for i in "${WEBSTORM_WHITELIST[@]}"
-	do
-    if [ "$i" == "$1" ] ; then
-        echo "Found"
-    fi
-	done
-
-  if [[ ${isWebStormPath} ]]; then
-    echo "$WEBSTORM_PATH"
-  else
+  if [[ -e "${HOME}/${1}/.idea/php.xml" ]]; then
     echo "$PHPSTORM_PATH"
+    exit;
   fi
+  echo "$WEBSTORM_PATH"
 }
 
 _main() {
-    if [[ -n ${ROFI_SELECTION} ]]; then
-        local stormPath=$(_selectStormPath "$ROFI_SELECTION")
+   if [[ -n ${ROFI_SELECTION} ]]; then
+      echo "Selected: ${ROFI_SELECTION}"
 
-        echo "$stormPath"
-	    eval '$PHPSTORM_PATH $HOME/${ROFI_SELECTION}'
-    fi
+      local stormPath=$(_selectStormPath "$ROFI_SELECTION")
+      echo "Using: $stormPath"
+	    eval '$stormPath $HOME/${ROFI_SELECTION}'
+  fi
 }
 
 _main
