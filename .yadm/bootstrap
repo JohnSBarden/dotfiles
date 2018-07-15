@@ -8,3 +8,6 @@ fi
 
 # check to make sure we have plugins installed
 vim +PluginInstall +qall
+
+# TODO :: Check to see if we have peco installed
+# TODO :: Check to see if we have rofi installed

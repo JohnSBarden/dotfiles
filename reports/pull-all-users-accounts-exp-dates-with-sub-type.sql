@@ -2,18 +2,28 @@ SELECT
     groups.account_id,
     groups.account_name,
     parent.account_name parent_account,
+
     groups.first_name account_owner_first,
     groups.last_name account_owner_last,
     groups.email account_owner_email,
-    groups.address_billing,
-    groups.city_billing,
-    billingState.name state_billing,
-    groups.address_shipping,
-    groups.city_shipping,
-    shippingState.name state_shipping,
+    groups.phone_number account_owner_phone,
+
     users.first_name first_name,
     users.last_name last_name,
     users.email email,
+    users.phone_number phone_number,
+    users.phone_number_alternative phone_number_alternative,
+
+    groups.address_billing,
+    groups.city_billing,
+    billingState.name state_billing,
+    groups.zip_billing,
+
+    groups.address_shipping,
+    groups.city_shipping,
+    shippingState.name state_shipping,
+    groups.zip_shipping,
+
     IF((groups.sub_exp_date >= groups.exp_date) OR (groups.exp_date is null), 'yes', 'no') subscription,
     IF((groups.exp_date IS NULL
             AND groups.sub_exp_date IS NULL
@@ -58,7 +68,10 @@ FROM
         LEFT JOIN
     states shippingState ON (shippingState.id = groups.state_shipping_id)
     
-    where groups.account_id not in (10000, 10001, 10176) and groups.is_demo_account = 0
-    
-    order by latest_exp_date asc
-    limit 1000000
+    where groups.account_id not in (10000, 10001, 10176)
+    and groups.is_demo_account = 0
+     and groups.account_name not like '%demo%'
+    and groups.account_name not like '%test%'
+    and groups.deleted = 'n'
+    limit 1000000;
+
