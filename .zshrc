@@ -17,9 +17,6 @@ if [[ -e "${HOME}/.aliases" ]]; then
   source "${HOME}/.aliases"
 fi
 
-# gruvbox color theme
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
-
 #default folder our NVM install goes to
 export NVM_DIR="$HOME/.nvm"
 
