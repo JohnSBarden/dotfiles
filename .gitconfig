@@ -3,7 +3,7 @@
 	name = David Duncan
 [core]
 	editor = vim
-	excludesfile = /home/dduncan/.gitignore.global
+	excludesfile = ~/.gitignore.global
 [merge]
 	ff = true
 [push]
