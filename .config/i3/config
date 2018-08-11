@@ -37,13 +37,20 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+#####################
+### Custom Modis
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -show combi -modi combi -lines 10 -width 50 -padding 20"
 
-bindsym $mod+Shift+d exec rofi -show ssh
+# display swap
+bindsym $mod+Shift+s exec $HOME/.bin/i3-display-swap
+
+# phpstorm modi (launcher for projects)
 bindsym $mod+Shift+t exec $HOME/.bin/phpstorm-modi
+
+# temp testing with cli modi
 bindsym $mod+Shift+w exec "$HOME/.bin/cli-modi > /tmp/climodi"
-#bindsym $mod+Shift+w exec "echo $PATH > /tmp/climodi"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -103,16 +110,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace names
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
+set $workspace1 "term"
+set $workspace2 "work-web"
+set $workspace3 "ide"
+set $workspace4 "ide-related"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
