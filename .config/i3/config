@@ -113,13 +113,13 @@ bindsym $mod+a focus parent
 set $workspace1 "term"
 set $workspace2 "work-web"
 set $workspace3 "ide"
-set $workspace4 "ide-related"
-set $workspace5 "5"
+set $workspace4 "ide2"
+set $workspace5 "ide3"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
-set $workspace9 "9"
-set $workspace10 "10"
+set $workspace9 "comm"
+set $workspace10 "wiki"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
