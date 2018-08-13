@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+_rofi () {
+  rofi -kb-accept-entry "!Return" "$@"
+}
+
+_projectMenu() {
+    echo $(cli version)
+    ROFI_SELECTION=$(cli project list | rofi -dmenu -p "pick a project > ")
+
+    echo "project: ${ROFI_SELECTION}"
+    menu=$(echo -e "< Exit\n1 Open Terminal >\n2 Open Storm >\n3 Chores... >\n4 Platform Control... >" | rofi -dmenu -p "cli > ")
+    val=$?
+
+    echo "$menu"
+    if [[ $val -eq 0 ]]
+    then
+      case "${menu}" in
+        "1 Open Terminal >") i3-sensible-terminal --tab -t "${ROFI_SELECTION}" -e "sh -c \"cd $HOME/workspace/${ROFI_SELECTION};zsh\"";;
+        "2 Open Storm >") exit;;
+        "3 Update Cli >") exit;;
+        "4 Platform Control... >") eexit;;
+        "< Exit") exit;;
+      esac
+    elif [[ $val -eq 1 ]]
+    then
+      _main
+    fi
+}
+
+
+_main() {
+    menu=$(echo -e "< Exit\n1 Projects >\n2 Update Projects >\n3 Update Cli >\n4 Platform Control... >" | rofi -dmenu -p "cli > ")
+    val=$?
+    echo "$menu"
+    if [[ $val -eq 0 ]]
+    then
+      case "${menu}" in
+        "1 Projects >") _projectMenu;;
+        "2 Update Projects >") i3-sensible-terminal --tab -t "Updating all projects..." -e "sh -c \"cli auto-update;zsh\"";;
+        "3 Update Cli >")  echo $(cli self-update);;
+        "4 Platform Control >") exit;;
+        "< Exit") exit;;
+      esac
+    elif [[ $val -eq 1 ]]
+    then
+      exit
+    fi
+}
+
+_main
