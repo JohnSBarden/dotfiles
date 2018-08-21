@@ -22,14 +22,21 @@ function gnew {
     git add . && git stash && git checkout master && git checkout -b $1 && git stash pop
 }
 
-alias exa="exa -l --git"
-
+# new k get ns macro
 alias kgns="k get ns"
 
-#vim becomes nvim
+# dont really use exa any more, but default its display a bit better:
+alias exa="exa -l --git"
+
+#vim becomes nvim, quick aliases from v to vim
 alias v="nvim"
 alias vim="v"
 alias vi="v"
 
+#neovim vimdiff
 alias vimdiff='nvim -d'
+
+#make sure nvm is our editor (probably not needed with aliasing up above)
 export EDITOR=nvim
+
+alias morning-routine="cli self-update && cli cp --all && cli auto-update" 
