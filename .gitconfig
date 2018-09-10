@@ -10,3 +10,4 @@
 	default = simple
 [alias]
         cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n1 -r git branch -d"
+        notmerged = "!git --no-pager log --no-merges master.."
