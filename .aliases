@@ -45,4 +45,4 @@ alias vimdiff='nvim -d'
 #make sure nvm is our editor (probably not needed with aliasing up above)
 export EDITOR=nvim
 
-alias morning-routine="cli self-update && cli cp --all && cli auto-update" 
+alias morning-routine="cli self-update && cli cp --all && cli auto-update && cli cp --curves" 
