@@ -185,8 +185,11 @@ bar {
     tray_output primary
 
     colors {
-        background #010F08
-        statusline #E7E9DB
+
+        background #35445830
+        separator #330066
+        statusline #fdf6e3
+
         # kolor_class      border  backg.  text
         focused_workspace  #2DA160 #1F6E42 #E7E9DB
         active_workspace   #2DA160 #278C54 #E7E9DB
