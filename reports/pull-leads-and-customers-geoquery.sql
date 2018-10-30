@@ -2,16 +2,6 @@ use quote_tool;
 
 SELECT
   *,
-  (SELECT count(*)
-   FROM bins
-   WHERE bins.group_id = (SELECT group_id
-                          FROM groups
-                          WHERE account_id = c_platform_account_id)) AS numberOfBins,
-  (SELECT count(*)
-   FROM fdm
-   WHERE fdm.group_id = (SELECT group_id
-                         FROM groups
-                         WHERE account_id = c_platform_account_id))  AS numberOfFdms,
   (
     3959 *
     acos(
