@@ -9,3 +9,4 @@ servers:~/workspace/servers
 wiki:~/vimwiki
 stf:~/workspace/ifp/platform
 gql:~/workspace/ifp/backend/platform-graphql
+fdm:~/workspace/ifp/backend/fdm-api
