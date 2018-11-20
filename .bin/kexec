@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+PODNAME=$(ksinglepod $1)
+echo "Execing into $PODNAME..."
+kubectl exec -it $PODNAME /bin/sh

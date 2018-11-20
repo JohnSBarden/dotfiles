@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+PODNAME=$(kcollectpods $1 | tail -n 1)
+echo $PODNAME
