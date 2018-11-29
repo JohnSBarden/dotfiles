@@ -9,7 +9,6 @@ yadm is used to easily manage the installation and bootstrapping
 ```sh
 sudo apt install yadm git
 yadm clone git@gitlab.intellifarms.com:dduncan/dotfiles.git
-yadm bootstrap
 ```
 
 ## Updating
