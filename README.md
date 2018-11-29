@@ -7,16 +7,14 @@
 yadm is used to easily manage the installation and bootstrapping
 
 ```sh
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -y ppa:flexiondotorg/yadm
-sudo apt-get update
-sudo apt-get -y install yadm
+sudo apt install yadm git
+yadm clone git@gitlab.intellifarms.com:dduncan/dotfiles.git
+yadm bootstrap
 ```
 
 ## Updating
 
 ```sh
 yadm pull --ff
-yadm bootstrap
 ```
 
