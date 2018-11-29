@@ -87,3 +87,4 @@ export EDITOR="$VISUAL"
 # work variables
 source ~/.intellifarms
 
+export DEV_HOST=dev0.intellifarms.com

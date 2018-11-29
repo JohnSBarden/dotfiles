@@ -3,7 +3,7 @@
 _baselibs(){
     sudo apt update -y
     sudo apt upgrade -y
-    sudo apt install curl git
+    sudo apt install curl git 
     git config --global core.excludesfile ~/.gitignore.global
 }
 
@@ -22,7 +22,7 @@ _vim() {
 }
 
 _i3() {
-    sudo apt install -y i3 i3lock rofi
+    sudo apt install -y i3 i3lock rofi scrot
 }
 
 _chromium() {
