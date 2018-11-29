@@ -22,7 +22,7 @@ _vim() {
 }
 
 _i3() {
-    sudo apt install -y i3 i3lock
+    sudo apt install -y i3 i3lock rofi
 }
 
 _chromium() {
@@ -121,7 +121,10 @@ _jetbrains-toolbox() {
     JETBRAINS_VERSION="jetbrains-toolbox-1.12.4481"
     wget https://download.jetbrains.com/toolbox/$JETBRAINS_VERSION.tar.gz &&
     tar -zxf $JETBRAINS_VERSION.tar.gz
-    ./$JETBRAINS_VERSION/jetbrains-toolbox
+    cd ./$JETBRAINS_VERSION
+    chmod +x jetbrains-toolbox
+    sudo mv jetbrains-toolbox /usr/local/bin/
+
 }
 
 _peco() {
@@ -151,5 +154,10 @@ if [ -z "$DESKTOP_SESSION" ]; then
   _configureWatches
 fi
 
+echo
+echo
+echo
+echo
 echo "==========================="
 echo "Everything went ok - Reboot!"
+echo "==========================="
