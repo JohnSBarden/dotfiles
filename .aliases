@@ -2,6 +2,12 @@
 #alias mount-henry='sudo mount -t cifs -o user=guest,pass=guest //HENRY/public /mnt/henry'
 #alias mount-perten='sudo mount -t cifs -o user=ddremote,pass=tomisawesome,file_mode=0777,dir_mode=0777       //10.128.20.38/Users /mnt/perten'
 
+# Silenced macro
+# Runs the command in the background, with absolutely zero output.
+silenced() {
+    "$@" &> /dev/null &;
+}
+
 function curlperf {
       curl  -s -w "%{time_connect} + %{time_starttransfer} = %{time_total}\n" "("
 }

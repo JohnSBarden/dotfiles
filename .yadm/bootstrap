@@ -9,5 +9,10 @@ fi
 # check to make sure we have plugins installed
 vim +PluginInstall +qall
 
-# TODO :: Check to see if we have peco installed
-# TODO :: Check to see if we have rofi installed
+read -p "Do you want to run a full bootstrap install? [Y/N] " -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    . $HOME/bootstrap.sh
+fi

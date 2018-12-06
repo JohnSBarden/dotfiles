@@ -1,98 +1,95 @@
 #!/usr/bin/env bash
 
-baselibs(){
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
+_baselibs(){
+    sudo apt update -y
+    sudo apt upgrade -y
+    sudo apt install curl git 
     git config --global core.excludesfile ~/.gitignore.global
 }
 
-exa(){
+_exa(){
     wget https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip
     unzip exa-linux-x86_64-0.8.0.zip
     sudo mv exa-linux-x86_64 /usr/local/bin
 }
 
-vim() {
+_vim() {
     # install as fallback just in case
-    sudo apt-get install -y vim
+    sudo apt install -y vim
     sudo apt-add-repository ppa:neovim-ppa/stable
-    sudo apt-get update
-    sudo apt-get install neovim
+    sudo apt update
+    sudo apt install -y neovim
 }
 
-i3() {
-    sudo apt-get install -y i3 i3lock
+_i3() {
+    sudo apt install -y i3 i3lock rofi scrot
 }
 
-chromium() {
-    sudo apt-get install chromium-browser
+_chromium() {
+    sudo apt install -y chromium-browser
 }
 
-virtualbox() {
-    # todo prefer using a specific file so idempotent
-    echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" | sudo tee -a /etc/apt/sources.list
-    wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-    wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+_virtualbox() {
+   sudo apt install -y virtualbox
 }
 
-minikube() {
+_minikube() {
     curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 }
 
 
-kubeps1() {
+_kubeps1() {
     git clone https://github.com/jonmosco/kube-ps1.git $HOME/kube-ps1
 }
 
-yarn() {
+_yarn() {
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt-get update && sudo apt-get install -y yarn
+    sudo apt update && sudo apt install -y yarn
 }
 
-nvm() {
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-}
-
-
-docker(){
-    sudo apt-get install -y \
+_docker(){
+ sudo apt install -y \
     apt-transport-https \
     ca-certificates \
     curl \
     software-properties-common
 
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-    sudo apt-key fingerprint 0EBFCD88
+ sudo apt-key fingerprint 0EBFCD88
 
-    sudo add-apt-repository \
-       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-       $(lsb_release -cs) \
-       stable"
 
-    sudo apt-get update
-    sudo apt-get install -y docker-ce
+ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+    sudo apt update
+    sudo apt install -y docker-ce
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.23.1/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
 }
 
-vundle(){
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +PluginInstall +qall
-}
+_vundle(){
+    # only install if we havent already
+    if [ ! -d "~/.vim/bundle/" ]; then
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+      vim +PluginInstall +qall
+    fi
+  }
 
 _install-zsh(){
     clear
-    sudo apt-get install -y git
-    sudo apt-get update && sudo apt-get install -y zsh
+    sudo apt install -y git
+    sudo apt update && sudo apt install -y zsh
     
     echo "Changing Shell:"
     chsh -s $(which zsh)
 }
 
-powerlinefont() {
+_powerlinefont() {
     git clone https://github.com/powerline/fonts.git
     # install
     cd fonts
@@ -102,29 +99,32 @@ powerlinefont() {
     rm -rf fonts
 }
 
-powerline() {
-    sudo apt-get install -y python3.6
+_powerline() {
+    sudo apt install -y python3.6
     wget https://bootstrap.pypa.io/get-pip.py
     sudo python get-pip.py
     sudo pip install powerline-status
 }
 
-addkube() {
-	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl
+_addkube() {
+  	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl
 	chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
 }
 
-configureWatches() {
+_configureWatches() {
     echo fs.inotify.max_user_watches=512000 | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
 }
 
 _jetbrains-toolbox() {
-    JETBRAINS_VERSION="jetbrains-toolbox-1.6.2914"
-    wget https://download.jetbrains.com/toolbox/$JETBRAIN_VERSION.tar.gz &&
+    JETBRAINS_VERSION="jetbrains-toolbox-1.12.4481"
+    wget https://download.jetbrains.com/toolbox/$JETBRAINS_VERSION.tar.gz &&
     tar -zxf $JETBRAINS_VERSION.tar.gz
-    ./$JETBRAINS_VERSION/jetbrains-toolbox
+    cd ./$JETBRAINS_VERSION
+    chmod +x jetbrains-toolbox
+    sudo mv jetbrains-toolbox /usr/local/bin/
+
 }
 
 _peco() {
@@ -135,26 +135,29 @@ _peco() {
 }
 
 #always
-baselibs
-yarn
-nvm
-vim
+_baselibs
+_yarn
+_vim
 _install-zsh
-powerlinefont
-powerline
-vundle
-docker  
-addkube
+_powerlinefont
+_vundle
+_docker  
+_addkube
 
 # additional libs if desktop
-if [ $DESKTOP_SESSION ]; then
-i3
-chromium
-virtualbox
-minikube
-_jetbrains-toolbox
-configureWatches
+if [ -z "$DESKTOP_SESSION" ]; then
+  _i3
+  _chromium
+  _virtualbox
+  _minikube
+  _jetbrains-toolbox
+  _configureWatches
 fi
 
+echo
+echo
+echo
+echo
 echo "==========================="
 echo "Everything went ok - Reboot!"
+echo "==========================="

@@ -87,8 +87,4 @@ export EDITOR="$VISUAL"
 # work variables
 source ~/.intellifarms
 
-# Silenced macro
-# Runs the command in the background, with absolutely zero output.
-silenced() {
-    "$@" &> /dev/null &;
-}
+export DEV_HOST=dev0.intellifarms.com
