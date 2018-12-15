@@ -21,8 +21,9 @@ _vim() {
     sudo apt install -y neovim
 }
 
+
 _i3() {
-    sudo apt install -y i3 i3lock rofi scrot
+    sudo apt install -y i3 i3lock rofi scrot maim xclip xdotool
 }
 
 _chromium() {
