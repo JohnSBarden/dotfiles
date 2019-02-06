@@ -84,6 +84,10 @@ export PATH=$PATH:`yarn global bin`
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# configure browser
+# TODO - Allow to be configurable on darwin/osx?
+export BROWSER="chromium-browser"
+
 # work variables
 source ~/.intellifarms
 

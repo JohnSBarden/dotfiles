@@ -216,3 +216,5 @@ for_window [class="^.*"] border pixel 0
 #autostart
 exec --no-startup-id jetbrains-toolbox
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+
