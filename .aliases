@@ -52,3 +52,6 @@ alias vimdiff='nvim -d'
 export EDITOR=nvim
 
 alias morning-routine="cli self-update && cli cp --all && cli auto-update && cli cp --curves" 
+
+# TODO :: this is for work printer, need to setup proper system differentiate
+alias sendprinter="lp -d HLL2315DW"

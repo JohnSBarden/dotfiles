@@ -4,6 +4,11 @@
 # basic zsh/antigen, vim, golang, nvm, setup
 #
 
+# grab our zprofile if it exists
+if [[ -e "${HOME}/.zprofile" ]]; then
+  source "${HOME}/.zprofile"
+fi
+
 # Grab antigen if we dont have it
 if [[ ! -e $HOME/.antigen/antigen.zsh ]]; then
     git clone https://github.com/zsh-users/antigen.git ~/.antigen
