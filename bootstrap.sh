@@ -21,8 +21,9 @@ _vim() {
     sudo apt install -y neovim
 }
 
+
 _i3() {
-    sudo apt install -y i3 i3lock rofi scrot
+    sudo apt install -y i3 i3lock rofi scrot maim xclip xdotool
 }
 
 _chromium() {
@@ -69,7 +70,7 @@ _docker(){
     sudo apt install -y docker-ce
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    curl -L https://github.com/docker/compose/releases/download/1.23.1/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
 }
 
 _vundle(){
@@ -107,7 +108,7 @@ _powerline() {
 }
 
 _addkube() {
-  	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl
+  	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.8.3/bin/linux/amd64/kubectl
 	chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
 }

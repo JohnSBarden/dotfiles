@@ -205,6 +205,7 @@ bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 # scrot & gimp - root
 bindsym --release Print exec scrot -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
 bindsym --release $mod+Print exec scrot --delay 6 -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release $mod+Shift+Print exec maim -s | xclip -selection clipboard -t image/png 
 
 # bind fancy lock screen 
 bindsym $mod+Scroll_Lock exec $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock
