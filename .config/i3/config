@@ -203,8 +203,12 @@ bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 #bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 # scrot & gimp - root
+#
+# take a screenshot
 bindsym --release Print exec scrot -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
+# take a screenshot w/ a delay
 bindsym --release $mod+Print exec scrot --delay 6 -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
+# take a screenshot and save to clipboard
 bindsym --release $mod+Shift+Print exec maim -s | xclip -selection clipboard -t image/png 
 
 # bind fancy lock screen 

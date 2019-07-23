@@ -3,8 +3,6 @@
 #
 # basic zsh/antigen, vim, golang, nvm, setup
 #
-
-# grab our zprofile if it exists
 if [[ -e "${HOME}/.zprofile" ]]; then
   source "${HOME}/.zprofile"
 fi
