@@ -82,6 +82,9 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
+# rust / cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # add yarn to bin
 export PATH=$PATH:`yarn global bin`
 
@@ -97,3 +100,4 @@ export BROWSER="chromium-browser"
 source ~/.intellifarms
 
 export DEV_HOST=dev0.intellifarms.com
+

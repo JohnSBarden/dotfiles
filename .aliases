@@ -58,3 +58,6 @@ alias rspeed="rsync --info=progress2"
 # TODO :: this is for work printer, need to setup proper system differentiate
 
 alias sendprinter="lp -d HLL2315DW"
+
+alias diffs-from-master="git --no-pager log --no-merges master.. "
+alias diffs-from-master-count="diffs-from-master | grep commit | wc -l"
