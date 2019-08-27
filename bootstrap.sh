@@ -70,7 +70,7 @@ _docker(){
     sudo apt install -y docker-ce
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin/docker-compose
 }
 
 _vundle(){
@@ -135,6 +135,16 @@ _peco() {
     sudo mv peco_linux_amd64/peco /usr/local/bin/peco
 }
 
+_polybar() {
+  cd /tmp
+  git clone --branch 3.2 --recursive https://github.com/jaagr/polybar
+  mkdir polybar/build
+  cd polybar/build
+  sudo apt install -y cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2
+  cmake ..
+  sudo make install
+}
+
 #always
 _baselibs
 _yarn
@@ -148,6 +158,7 @@ _addkube
 # additional libs if desktop
 if [ -z "$DESKTOP_SESSION" ]; then
   _i3
+  _polybar
   _chromium
   _virtualbox
   _minikube
