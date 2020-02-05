@@ -9,5 +9,15 @@
 [push]
 	default = simple
 [alias]
-        cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n1 -r git branch -d"
-        notmerged = "!git --no-pager log --no-merges master.."
+  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n1 -r git branch -d"
+  notmerged = "!git --no-pager log --no-merges master.."
+
+  # delete all local branches but master and the current one
+  br-delete-useless = "!f(){\
+    git branch | grep -v "master" | grep -v ^* | xargs git branch -d;\
+  }; f"
+  
+  # forcibly delete all local branches but master and the current one.
+  br-delete-useless-force = "!f(){\
+    git branch | grep -v "master" | grep -v ^* | xargs git branch -D;\
+  }; f"

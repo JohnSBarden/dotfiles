@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-ROFI_SELECTION=$(find $HOME/workspace -maxdepth 5 -name ".idea"  -not -path "*/node_modules/*" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu -p "storm-modi > ")
+ROFI_SELECTION=$(find $HOME/workspace -maxdepth 5 -name ".idea"  -not -path "*/node_modules/*" -not -path "*/vendor/*" -not -path "*/tmp/*" -not -path "*/dist/*" | sed 's/\.idea//g' | sed "s#$HOME/##g" | rofi -dmenu -p "storm-modi > ")
 
 WEBSTORM_PATH="${WEBSTORM_PATH:-$(which webstorm)}"
 PHPSTORM_PATH="${PHPSTORM_PATH:-$(which phpstorm)}"

@@ -99,3 +99,5 @@ source ~/.intellifarms
 
 export DEV_HOST=dev0.intellifarms.com
 
+# add krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
