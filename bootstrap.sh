@@ -35,7 +35,7 @@ _virtualbox() {
 }
 
 _minikube() {
-    curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+    curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 }
 
 
@@ -119,7 +119,7 @@ _configureWatches() {
 }
 
 _jetbrains-toolbox() {
-    JETBRAINS_VERSION="jetbrains-toolbox-1.12.4481"
+    JETBRAINS_VERSION="jetbrains-toolbox-1.16.6319"
     wget https://download.jetbrains.com/toolbox/$JETBRAINS_VERSION.tar.gz &&
     tar -zxf $JETBRAINS_VERSION.tar.gz
     cd ./$JETBRAINS_VERSION
@@ -156,9 +156,9 @@ _docker
 _addkube
 
 # additional libs if desktop
-if [ -z "$DESKTOP_SESSION" ]; then
+if [[ ! -z "$DESKTOP_SESSION" ]]; then
   _i3
-  _polybar
+#  _polybar
   _chromium
   _virtualbox
   _minikube
