@@ -9,7 +9,7 @@ _selectStormPath() {
     echo "$PHPSTORM_PATH"
     exit;
   fi
-  echo "$WEBSTORM_PATH"
+  echo "$PHPSTORM_PATH"
 }
 
 _main() {
