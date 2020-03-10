@@ -107,11 +107,18 @@ _powerline() {
     sudo pip install powerline-status
 }
 
-_addkube() {
+_addKube() {
   	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl
 	chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
 }
+
+_addStern() {
+  	curl -L https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64 > stern
+	chmod +x ./stern
+    sudo mv ./stern /usr/local/bin/stern
+}
+
 
 _configureWatches() {
     echo fs.inotify.max_user_watches=512000 | sudo tee -a /etc/sysctl.conf
@@ -153,7 +160,8 @@ _install-zsh
 _powerlinefont
 _vundle
 _docker  
-_addkube
+_addKube
+_addStern
 _peco
 
 # additional libs if desktop
