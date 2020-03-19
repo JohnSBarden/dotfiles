@@ -3,7 +3,7 @@
 _baselibs(){
     sudo apt update -y
     sudo apt upgrade -y
-    sudo apt install curl git 
+    sudo apt install curl git autoconf buildessential 
     git config --global core.excludesfile ~/.gitignore.global
 }
 
@@ -91,13 +91,14 @@ _install-zsh(){
 }
 
 _powerlinefont() {
-    git clone https://github.com/powerline/fonts.git
+#    git clone https://github.com/powerline/fonts.git
     # install
-    cd fonts
-    ./install.sh
+#    cd fonts
+#    ./install.sh
     # clean-up a bit
-    cd ..
-    rm -rf fonts
+#   cd ..
+#    rm -rf fonts
+sudo apt install -y  powerline-fonts fonts-materialdesignicons-webfont
 }
 
 _powerline() {
@@ -105,12 +106,23 @@ _powerline() {
     wget https://bootstrap.pypa.io/get-pip.py
     sudo python get-pip.py
     sudo pip install powerline-status
+
 }
 
 _addKube() {
   	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl
-	chmod +x ./kubectl
+	  chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
+
+    # add aws-iam-authenticator too
+
+    curl -LO aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/aws-iam-authenticator
+    chmod +x ./aws-iam-authenticator
+    sudo mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
+}
+
+_addAwsCli() {
+    sudo apt install -y awscli
 }
 
 _addStern() {
@@ -152,6 +164,10 @@ _polybar() {
   sudo make install
 }
 
+_desktopDeps() {
+  sudo apt install -y dunst compton tree arandr slop xclip
+}
+
 #always
 _baselibs
 _yarn
@@ -160,6 +176,7 @@ _install-zsh
 _powerlinefont
 _vundle
 _docker  
+_addAwsCli
 _addKube
 _addStern
 _peco
@@ -167,6 +184,7 @@ _peco
 # additional libs if desktop
 if [[ ! -z "$DESKTOP_SESSION" ]]; then
   _i3
+  _desktopDeps
 #  _polybar
   _chromium
   _virtualbox

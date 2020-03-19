@@ -19,7 +19,8 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-font pango:Droid Sans Mono for Powerline Regular 8
+font pango:Droid Sans Mono for Powerline Regular 9
+
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -178,25 +179,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    status_command i3status
-    tray_output primary
-
-    colors {
-
-        background #35445830
-        separator #330066
-        statusline #fdf6e3
-
-        # kolor_class      border  backg.  text
-        focused_workspace  #2DA160 #1F6E42 #E7E9DB
-        active_workspace   #2DA160 #278C54 #E7E9DB
-        inactive_workspace #2DA160 #0E261A #E7E9DB
-        urgent_workspace   #2DA160 #F3A33B #E7E9DB
-    }
-}
 
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
@@ -222,3 +204,27 @@ exec --no-startup-id jetbrains-toolbox
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
+
+# panel
+bar {
+        colors {
+        background #2f343f
+        statusline #2f343f
+        separator #4b5262
+
+        # colour of border, background, and text
+        focused_workspace       #2f343f #81a1c1 #000000
+        active_workspace        #2f343f #2f343f #d8dee8
+        inactive_workspace      #2f343f #2f343f #d8dee8
+        urgent_workspacei       #2f343f #ebcb8b #2f343f
+    }
+        status_command i3status
+}
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #2f343f #81a1c1 #000000 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
