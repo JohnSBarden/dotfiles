@@ -26,7 +26,7 @@ bindsym $mod+Shift+q kill
 ### Custom Modis
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -show combi -modi combi -sidebar-mode -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
+bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -show-icons -show combi -modi combi -sidebar-mode -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
 
 # display swap
 bindsym $mod+Shift+s exec $HOME/.bin/i3-display-swap
