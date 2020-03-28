@@ -168,6 +168,14 @@ _desktopDeps() {
   sudo apt install -y dunst compton tree arandr slop xclip
 }
 
+_microsoftTeams() {
+  wget https://teams.microsoft.com/downloads/desktopurl?env=production&plat=linux&arch=x64&download=true&linuxArchiveType=deb > /tmp/teams.deb
+  sudo dpkg -i /tmp/teams.deb
+  sudo apt update
+  sudo apt upgrade -y
+}
+
+
 #always
 _baselibs
 _yarn
@@ -191,6 +199,7 @@ if [[ ! -z "$DESKTOP_SESSION" ]]; then
   _minikube
   _jetbrains-toolbox
   _configureWatches
+  _microsoftTeams
 fi
 
 echo
