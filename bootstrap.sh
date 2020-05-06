@@ -7,12 +7,6 @@ _baselibs(){
     git config --global core.excludesfile ~/.gitignore.global
 }
 
-_exa(){
-    wget https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip
-    unzip exa-linux-x86_64-0.8.0.zip
-    sudo mv exa-linux-x86_64 /usr/local/bin
-}
-
 _vim() {
     # install as fallback just in case
     sudo apt install -y vim
@@ -50,18 +44,18 @@ _yarn() {
 }
 
 _docker(){
- sudo apt install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+   sudo apt install -y \
+     apt-transport-https \
+     ca-certificates \
+     curl \
+     software-properties-common
 
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
- sudo apt-key fingerprint 0EBFCD88
+   sudo apt-key fingerprint 0EBFCD88
 
 
- sudo add-apt-repository \
+   sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
@@ -98,18 +92,20 @@ _powerlinefont() {
     # clean-up a bit
 #   cd ..
 #    rm -rf fonts
-sudo apt install -y  powerline-fonts fonts-materialdesignicons-webfont
+  
+    sudo apt install -y  powerline-fonts fonts-materialdesignicons-webfont
 }
 
 _powerline() {
+    cd /tmp
     sudo apt install -y python3.6
     wget https://bootstrap.pypa.io/get-pip.py
     sudo python get-pip.py
     sudo pip install powerline-status
-
 }
 
 _addKube() {
+    cd /tmp
   	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl
 	  chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
@@ -126,8 +122,9 @@ _addAwsCli() {
 }
 
 _addStern() {
+    cd /tmp
   	curl -L https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64 > stern
-	chmod +x ./stern
+  	chmod +x ./stern
     sudo mv ./stern /usr/local/bin/stern
 }
 
@@ -148,6 +145,7 @@ _jetbrains-toolbox() {
 }
 
 _peco() {
+    cd /tmp
     wget https://github.com/peco/peco/releases/download/v0.5.7/peco_linux_amd64.tar.gz &&
     tar -zxf peco_linux_amd64.tar.gz
     chmod +x peco_linux_amd64/peco
@@ -169,12 +167,27 @@ _desktopDeps() {
 }
 
 _microsoftTeams() {
+  cd /tmp
   wget https://teams.microsoft.com/downloads/desktopurl?env=production&plat=linux&arch=x64&download=true&linuxArchiveType=deb > /tmp/teams.deb
   sudo dpkg -i /tmp/teams.deb
   sudo apt update
   sudo apt upgrade -y
 }
 
+_exa() {
+  cd /tmp
+  wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip &&
+  unzip exa-linux-x86_64 &&
+  chmod +x exa-linux-x86_64 &&
+  sudo mv exa-linux-x86_64 /usr/local/bin/exai
+  rm exa-linux-x86_64
+}
+
+_bat() {
+   cd /tmp
+   wget https://github.com/sharkdp/bat/releases/download/v0.15.0/bat_0.15.0_amd64.deb &&
+   sudo dpkg -i bat_0.15.0_amd64.deb
+}
 
 #always
 _baselibs
@@ -188,6 +201,8 @@ _addAwsCli
 _addKube
 _addStern
 _peco
+_exa
+_bat
 
 # additional libs if desktop
 if [[ ! -z "$DESKTOP_SESSION" ]]; then

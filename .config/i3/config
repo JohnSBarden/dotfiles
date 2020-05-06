@@ -164,9 +164,9 @@ bindsym XF86AudioMute exec "amixer -D pulse set Master 1+ toggle"
 # scrot & gimp - root
 #
 # take a screenshot
-bindsym --release Print exec scrot -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release Print exec scrot -s $HOME/Pictures/`date +%Y-%m-%d_%H-%M-%S`.png
 # take a screenshot w/ a delay
-bindsym --release $mod+Print exec scrot --delay 6 -s $HOME/Pictures/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release $mod+Print exec scrot --delay 6 -s $HOME/Pictures/`date +%Y-%m-%d_%H-%M-%S`.png
 # take a screenshot and save to clipboard
 bindsym --release $mod+Shift+Print exec maim -s | xclip -selection clipboard -t image/png 
 
@@ -180,8 +180,9 @@ for_window [class="^.*"] border pixel 0
 # default workspace assignments
 #
 assign [class="Microsoft Teams*"] $workspace9
-assign [class="Chromium"] $workspace1
-assign [class="Google-chrome-beta"] $workspace1
+assign [class="*Chromium*"] $workspace2
+assign [class="Google-chrome-beta"] $workspace2
+assign [class="gnome-terminal"] $workspace1
 assign [class="Postman"] $workspace7
 assign [class="Avocode"] $workspace8
 
@@ -191,9 +192,11 @@ assign [class="Avocode"] $workspace8
 
 # development / collaboration
 exec --no-startup-id jetbrains-toolbox
-exec --no-startup-id i3-msg 'workspace 7:postman; exec postman'
-exec --no-startup-id i3-msg 'workspace 8:avocode; exec avocode'
-exec --no-startup-id i3-msg 'workspace 9:teams; exec teams'
+exec --no-startup-id postman
+exec --no-startup-id avocode
+exec --no-startup-id teams
+exec --no-startup-id gnome-terminal
+exec --no-startup-id chromium-browser
 
 # kdeconnect for phone syncing
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
