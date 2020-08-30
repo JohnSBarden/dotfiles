@@ -14,3 +14,5 @@ kubes:~/workspace/servers/kubernetes
 kubernetes:~/workspace/servers/kubernetes
 dduncan:~/workspace/dduncan
 gitlab:~/workspace/ifp/tools/gitlab-environment-dashboard
+processors:~/workspace/processors
+proc:~/workspace/processors

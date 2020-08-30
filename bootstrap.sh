@@ -32,6 +32,9 @@ _minikube() {
     curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 }
 
+_go() {
+    wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.14.6.linux-amd64.tar.gz
+}
 
 _kubeps1() {
     git clone https://github.com/jonmosco/kube-ps1.git $HOME/kube-ps1
@@ -203,6 +206,7 @@ _addStern
 _peco
 _exa
 _bat
+_go
 
 # additional libs if desktop
 if [[ ! -z "$DESKTOP_SESSION" ]]; then

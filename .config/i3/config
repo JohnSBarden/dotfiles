@@ -2,6 +2,11 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+
+# monitor layout from arandr / xrandr
+# TODO -- this should be getting executed not from i3, but because that is not working, we are running it from here
+exec --no-startup-id ~/.screenlayout/default.sh
+
 set $mod Mod4
 
 font pango:Droid Sans Mono for Powerline Regular 9
@@ -88,16 +93,30 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace names
-set $workspace1 "1 term"
-set $workspace2 "2 web"
+set $workspace1 "1 term" 
+set $workspace2 "2 web" 
 set $workspace3 "3 ide"
 set $workspace4 "4 ide2"
 set $workspace5 "5 ide3"
 set $workspace6 "6"
 set $workspace7 "7 postman"
-set $workspace8 "8 avocode"
+set $workspace8 "8"
 set $workspace9 "9 teams"
 set $workspace10 "0 wiki"
+
+
+# default workspace monitor outputs
+#workspace $workspace1 output primary
+#workspace $workspace2 output secondary
+workspace $workspace3 output primary
+workspace $workspace4 output primary
+workspace $workspace5 output primary
+workspace $workspace6 output secondary
+workspace $workspace7 output secondary
+workspace $workspace8 output secondary
+workspace $workspace9 output secondary
+workspace $workspace10 output primary
+
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -108,7 +127,7 @@ bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
-  bindsym $mod+9 workspace $workspace9
+bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
