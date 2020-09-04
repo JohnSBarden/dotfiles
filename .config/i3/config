@@ -212,7 +212,6 @@ assign [class="Avocode"] $workspace8
 # development / collaboration
 exec --no-startup-id jetbrains-toolbox
 exec --no-startup-id postman
-exec --no-startup-id avocode
 exec --no-startup-id teams
 exec --no-startup-id gnome-terminal
 exec --no-startup-id chromium-browser
