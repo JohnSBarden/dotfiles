@@ -103,3 +103,5 @@ export DEV_HOST=dev0.intellifarms.com
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 export HUSKY_SKIP_HOOKS=1
+
+

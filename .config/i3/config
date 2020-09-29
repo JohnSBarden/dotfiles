@@ -190,7 +190,7 @@ bindsym --release $mod+Print exec scrot --delay 6 -s $HOME/Pictures/`date +%Y-%m
 bindsym --release $mod+Shift+Print exec maim -s | xclip -selection clipboard -t image/png 
 
 # bind fancy lock screen 
-bindsym $mod+Scroll_Lock exec $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock
+bindsym $mod+Scroll_Lock exec $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock -b="0x5"
  
 # remove border
 for_window [class="^.*"] border pixel 0
