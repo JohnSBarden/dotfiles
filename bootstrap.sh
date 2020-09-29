@@ -96,7 +96,7 @@ _powerlinefont() {
 #   cd ..
 #    rm -rf fonts
   
-    sudo apt install -y  powerline-fonts fonts-materialdesignicons-webfont
+    sudo apt install -y fonts-powerline fonts-materialdesignicons-webfont
 }
 
 _powerline() {
