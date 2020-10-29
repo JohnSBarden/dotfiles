@@ -178,6 +178,7 @@ _microsoftTeams() {
 }
 
 _exa() {
+  # colorful ls utility
   cd /tmp
   wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip &&
   unzip exa-linux-x86_64 &&
@@ -187,9 +188,17 @@ _exa() {
 }
 
 _bat() {
+   # colorful cat utility
    cd /tmp
    wget https://github.com/sharkdp/bat/releases/download/v0.15.0/bat_0.15.0_amd64.deb &&
    sudo dpkg -i bat_0.15.0_amd64.deb
+}
+
+_peek() {
+   # peek is a screen capture / gif recording software
+   sudo add-apt-repository ppa:peek-developers/stable
+   sudo apt update
+   sudo apt install -y peek
 }
 
 #always
@@ -219,6 +228,7 @@ if [[ ! -z "$DESKTOP_SESSION" ]]; then
   _jetbrains-toolbox
   _configureWatches
   _microsoftTeams
+  _peek
 fi
 
 echo
