@@ -16,7 +16,9 @@ order += "disk /"
 #order += "wireless wlp2s0"
 order += "volume master"
 #order += "battery 1"
+order += "tztime ist"
 order += "tztime local"
+
 
 load {
         format = "<span background='#f59335'>%5min Load </span>"
@@ -68,5 +70,11 @@ volume master {
 
 tztime local {
 		format = "<span background='#81a1c1'>%time</span>"
-		format_time = "%a %-d %b %H:%M"
+		format_time = "%a %-d %b %H:%M CT"
+}
+
+tztime ist {
+		format = "<span background='#81a1c1'>%time</span>"
+		format_time = "%a %-d %b %H:%M IST"
+    timezone = "Asia/Kolkata"
 }

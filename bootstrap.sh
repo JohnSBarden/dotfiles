@@ -203,7 +203,9 @@ _peek() {
 
 #always
 _baselibs
-_yarn
+
+# deprecated - yarn should be installed via npm install -g yarn
+# _yarn
 _vim
 _install-zsh
 _powerlinefont
