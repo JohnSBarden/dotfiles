@@ -1,5 +1,5 @@
 [global]
-monitor = 1
+monitor = 2
 follow = monitor
 geometry = "250x50-24+24"
 indicate_hidden = yes
