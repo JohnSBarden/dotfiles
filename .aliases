@@ -51,7 +51,7 @@ alias vimdiff='nvim -d'
 #make sure nvm is our editor (probably not needed with aliasing up above)
 export EDITOR=nvim
 
-alias morning-routine="cli up && cli self-update && cli cp --all && cli auto-update && cli cp --curves" 
+alias morning-routine="cli up && cli self-update && cli cp --all && cli auto-update && cli cp --fields" 
 
 alias rspeed="rsync --info=progress2"
 
