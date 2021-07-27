@@ -3,7 +3,7 @@
 _baselibs(){
     sudo apt update -y
     sudo apt upgrade -y
-    sudo apt install curl git autoconf buildessential 
+    sudo apt install curl git autoconf build-essential 
     git config --global core.excludesfile ~/.gitignore.global
 }
 
@@ -101,7 +101,7 @@ _powerlinefont() {
 
 _powerline() {
     cd /tmp
-    sudo apt install -y python3.6
+    sudo apt install -y python3
     wget https://bootstrap.pypa.io/get-pip.py
     sudo python get-pip.py
     sudo pip install powerline-status
@@ -181,10 +181,9 @@ _exa() {
   # colorful ls utility
   cd /tmp
   wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip &&
-  unzip exa-linux-x86_64 &&
+  unzip exa-linux-x86_64-0.9.0 &&
   chmod +x exa-linux-x86_64 &&
   sudo mv exa-linux-x86_64 /usr/local/bin/exai
-  rm exa-linux-x86_64
 }
 
 _bat() {
