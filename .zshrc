@@ -30,17 +30,34 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle pip
 antigen bundle command-not-found
+
+# vim package manager
 antigen bundle vundle
+
+# 
 antigen bundle wd
+
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
+antigen bundle yarn
+
+# deno
+antigen bundle deno
+
+# auto suggestions
+antigen bundle zsh-users/zsh-autosuggestions
 
 # highlighting
 antigen bundle zsh-users/zsh-syntax-highlighting
+
+# aws auto completions
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
+antigen bundle aws
 
 # kubernetes
 antigen bundle kubectl
 antigen bundle ahmetb/kubectx
 
-# always been getting more efficient
+# always get more efficient
 antigen bundle djui/alias-tips
 
 # preload nvm for node version management
@@ -52,6 +69,7 @@ antigen bundle jimeh/zsh-peco-history
 #lock screen, we bind to this in our i3 keybindings 
 antigen bundle guimeira/i3lock-fancy-multimonitor
 
+
 #load up teiler for imagie / screencasting
 # todo :: 
 # antigen bundle carnage/teiler
@@ -61,6 +79,12 @@ antigen theme agnoster
 
 # Tell antigen that you're done.
 antigen apply
+
+
+
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
 
 # stern completion
 source <(stern --completion=zsh)
@@ -94,14 +118,8 @@ export EDITOR="$VISUAL"
 # TODO - Allow to be configurable on darwin/osx?
 export BROWSER="chromium-browser"
 
-# work variables
-source ~/.intellifarms
-
-export DEV_HOST=dev0.intellifarms.com
-
 # add krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-export HUSKY_SKIP_HOOKS=1
-
-
+# work variables
+source ~/.agisuretrack
