@@ -35,5 +35,5 @@ yadm pull --ff
 yadm checkout -b my-branch-name
 yadm add file-that-changed
 yadm commit -am 'feat: add new feature'
-yadm push origin master
+yadm push origin my-branch-name
 ```
