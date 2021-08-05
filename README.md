@@ -6,10 +6,10 @@ You do not need these dotfiles, but they ensure that you have a great terminal/d
 
 ## Overview of what is packaged:
 
-Shell: zsh, with package manager antigen and lots of great plugins pre-installed
-WM/DM: i3
-Editor: vim/neovim 'dark-powered' configuration
-Other: awscli, kubectl, stern, peco, golang, microsoft teams, jetbrains toolbox, rofi/modi for wm searching, and more
+* Shell: zsh, with package manager antigen and lots of great plugins pre-installed
+* WM/DM: i3
+* Editor: vim/neovim 'dark-powered' configuration
+* Other: awscli, kubectl, stern, peco, golang, microsoft teams, jetbrains toolbox, rofi/modi for wm searching, and more
 
 ## Installation
 
