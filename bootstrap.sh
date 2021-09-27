@@ -15,13 +15,6 @@ _vim() {
     sudo apt install -y neovim
 }
 
-_nodejs() {
-    cd ~
-    curl -sL https://deb.nodesource.com/setup_14.x -o setup_14.sh
-    sudo sh ./setup_14.sh
-    sudo apt update
-    sudo apt install nodejs
-}
 
 _i3() {
     sudo apt install -y i3 i3lock rofi scrot maim xclip xdotool
