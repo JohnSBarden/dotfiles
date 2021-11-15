@@ -12,7 +12,7 @@ exec --no-startup-id ~/.screenlayout/work.sh
 
 set $mod Mod4
 
-font pango:Droid Sans Mono for Powerline Regular 10
+font pango:Fira Code Nerd Font 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -248,13 +248,13 @@ exec --no-startup-id firefox
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
 # i3bar for workspaces and windows
-#bar {
+# bar {
 #   colors {
 #     background #2f343f
 #     statusline #2f343f
 #     separator #4b5262
 
-     # colour of border, background, and text
+#      colour of border, background, and text
 #     focused_workspace       #2f343f #f59335 #000000
 #     active_workspace        #2f343f #a3be8c #000000
 #     inactive_workspace      #2f343f #2f343f #d8dee8
@@ -262,22 +262,23 @@ exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 #   }
 
 #   status_command i3status
-#}
+# }
 
 # colour of border, background, text, indicator, and child_border
-client.focused              #2f343f #f59335 #000000 #bf616a #d8dee8
+client.focused              #2f343f #81A1C1 #000000 #bf616a #d8dee8
 client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
+font                 FiraCodeNerdFont:pixelsize=10
 
 ####
 ## Custom Settings from 
 ## https://github.com/Manas140/dotfiles/blob/main/config/i3/config
 ####
 #Settings
-font pango:Fira Code, Noto Color Emoji 10
+font pango:Fira Code Nerd Font, Noto Color Emoji 10
 #gaps inner 10
 #smart_gaps on
 #smart_gaps inverse_outer
