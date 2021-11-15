@@ -36,6 +36,10 @@ _go() {
     wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.14.6.linux-amd64.tar.gz
 }
 
+_rust() {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
 _kubeps1() {
     git clone https://github.com/jonmosco/kube-ps1.git $HOME/kube-ps1
 }
@@ -44,6 +48,15 @@ _yarn() {
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt update && sudo apt install -y yarn
+}
+
+_fonts(){
+    # sudo apt install fonts-firacode
+    ## Fira Code Nerd Font (adds icons)
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+    unzip FiraCode.zip -d ~/.fonts
+    fc-cache -fv
+    echo "done!"
 }
 
 _docker(){
@@ -217,19 +230,21 @@ _peco
 _exa
 _bat
 _go
+_rust
 
 # additional libs if desktop
 if [[ ! -z "$DESKTOP_SESSION" ]]; then
   _i3
   _desktopDeps
-#  _polybar
+  _polybar
   _chromium
   _virtualbox
   _minikube
-  _jetbrains-toolbox
+  # _jetbrains-toolbox
   _configureWatches
-  _microsoftTeams
+  # _microsoftTeams
   _peek
+  _fonts
 fi
 
 echo
