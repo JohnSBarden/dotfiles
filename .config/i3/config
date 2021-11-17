@@ -214,6 +214,9 @@ bindsym $mod+backslash exec $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimo
 # remove border
 for_window [class="^.*"] border pixel 0
 
+# enable some floating windows
+for_window [class="Yad" title="yad-calendar"] floating enable
+
 #
 # default workspace assignments
 #
