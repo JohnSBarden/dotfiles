@@ -20,6 +20,10 @@ _i3() {
     sudo apt install -y i3 i3lock rofi scrot maim xclip xdotool
 }
 
+_nord(){
+  wget https://github.com/EliverLara/Nordic/releases/download/2.0.0/Nordic-darker-v40.tar.xz  && tar -xzf Nordic-darker-v40.tar.xz -C ~/.themes/ && rm Nordic-darker-v40.tar.xz 
+}
+
 _chromium() {
     sudo apt install -y chromium-browser
 }
