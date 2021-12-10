@@ -128,6 +128,7 @@ export DEV_HOST=dev0.intellifarms.com
 export CLI_CP_SSH_USER=jbarden
 export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval `keychain --eval --agents ssh /home/jbarden/.ssh/id_ed25519 >/dev/null 2>&1`
+eval `keychain --eval --agents ssh /home/jbarden/.ssh/personal/id_ed25519 >/dev/null 2>&1`
 
 ## Aliases
 alias gfrbm='gfo master:master && grbm'
