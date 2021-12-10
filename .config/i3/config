@@ -12,8 +12,6 @@ exec --no-startup-id ~/.screenlayout/work.sh
 
 set $mod Mod4
 
-font pango:Fira Code Nerd Font 10
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -234,10 +232,10 @@ exec --no-startup-id compton
 assign [instance="spotify"] $workspace8
 assign [instance="messages.google.com__web"] $workspace8
 #assign [class="Slack"] $workspace6
-exec --no-startup-id spotify
+# exec --no-startup-id spotify
 # exec --no-startup-id chromium-browser --app="https://messages.google.com/web/"
 exec --no-startup-id teams
-exec --no-startup-id postman
+# exec --no-startup-id postman
 
 #
 #autostart

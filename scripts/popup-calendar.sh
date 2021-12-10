@@ -28,7 +28,7 @@ case "$1" in
 
     # Y
     if [ "$Y" -gt "$((HEIGHT / 2))" ]; then #Bottom
-        : $((pos_y = (HEIGHT) + 2*(YAD_HEIGHT + BAR_HEIGHT) + BORDER_SIZE))
+        : $((pos_y = (HEIGHT) + (YAD_HEIGHT + 2*BAR_HEIGHT) + BORDER_SIZE))
     else #Top
         : $((pos_y = BAR_HEIGHT + BORDER_SIZE))
     fi
