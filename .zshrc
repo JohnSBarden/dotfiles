@@ -137,9 +137,13 @@ alias yys='yarn && yarn start'
 alias yyb='yarn && yarn build'
 alias push='yarn build && yalc push'
 relog () {cli restart "$@" && cli logs --tail=100 "$@"}
-uplog () {cli up "$@" && cli logs --tail=100 "$@"}
+uplog () {cli up --force-recreate "$@" && cli logs --tail=100 "$@"}
+alias morning='docker system prune -f && cli up && update'
 alias eod='cli down && neofetch && $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock && systemctl suspend'
 alias update='cli self-update && cli auto-update'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
+# use like `vend bm-models branch-name`
+vend() {
+	cd vendor/intellifarms/"$1" && git checkout master && git pull && git checkout origin/"$2" && cd ../../..
+}

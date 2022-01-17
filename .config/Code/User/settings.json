@@ -95,5 +95,6 @@
   "GitLive.Issue tracker integration": "Disabled",
   "apollographql.trace.server": "messages",
   "sync.gist": "c89e97ebd76baafa64b8c090a6bae6f5",
-  "explorer.confirmDragAndDrop": false
+  "explorer.confirmDragAndDrop": false,
+  "editor.bracketPairColorization.enabled": true
 }
