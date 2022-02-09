@@ -212,6 +212,9 @@ bindsym $mod+backslash exec $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimo
 # remove border
 for_window [class="^.*"] border pixel 0
 
+# title
+title_align center
+
 # enable some floating windows
 for_window [class="Yad" title="yad-calendar"] floating enable
 
@@ -279,7 +282,8 @@ font                 FiraCodeNerdFont:pixelsize=10
 ## https://github.com/Manas140/dotfiles/blob/main/config/i3/config
 ####
 #Settings
-font pango:Fira Code Nerd Font, Noto Color Emoji 10
+font pango:Fira Code Regular Nerd Font 8
+# font pango:Noto Color Emoji 10
 #gaps inner 10
 #smart_gaps on
 #smart_gaps inverse_outer
@@ -288,7 +292,6 @@ font pango:Fira Code Nerd Font, Noto Color Emoji 10
 #hide_edge_borders smart_no_gaps
 #new_window normal 0 px
 #new_window none
-#default_border none
 
 #floating_modifier $mod
 
