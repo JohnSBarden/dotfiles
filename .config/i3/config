@@ -2,13 +2,13 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # Set background and themeing
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 exec_always --no-startup-id feh --bg-scale '/home/jbarden/Pictures/forest.jpg' &
-exec_always --no-startup-id /usr/lib/gsd-xsettings
+exec_always --no-startup-id /usr/lib/gsd-xsettings &
 
 # monitor layout from arandr / xrandr
 # TODO -- this should be getting executed not from i3, but because that is not working, we are running it from here
-exec --no-startup-id ~/.screenlayout/work.sh
+exec --no-startup-id ~/.screenlayout/home.sh
 
 set $mod Mod4
 
@@ -229,8 +229,8 @@ assign [class="jetbrains-phpstorm"] $workspace4
 # johnbarden custom workspace startup
 exec --no-startup-id redshift
 exec --no-startup-id compton 
-assign [instance="spotify"] $workspace8
-assign [instance="messages.google.com__web"] $workspace8
+#assign [instance="spotify"] $workspace8
+#assign [instance="messages.google.com__web"] $workspace8
 #assign [class="Slack"] $workspace6
 # exec --no-startup-id spotify
 # exec --no-startup-id chromium-browser --app="https://messages.google.com/web/"
@@ -246,7 +246,7 @@ exec --no-startup-id alacritty
 exec --no-startup-id firefox
 
 # kdeconnect for phone syncing
-exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+#exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
 # i3bar for workspaces and windows
 # bar {

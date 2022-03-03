@@ -137,7 +137,7 @@ alias yys='yarn && yarn start'
 alias yyb='yarn && yarn build'
 alias push='yarn build && yalc push'
 relog () {cli restart "$@" && cli logs --tail=100 "$@"}
-uplog () {cli up "$@" && cli logs --tail=100 "$@"}
+uplog () {cli up --force-recreate "$@" && cli logs --tail=100 "$@"}
 alias eod='cli down && neofetch && $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock && systemctl suspend'
 alias update='cli self-update && cli auto-update'
 
