@@ -74,17 +74,15 @@ antigen bundle guimeira/i3lock-fancy-multimonitor
 # todo :: 
 # antigen bundle carnage/teiler
 
-#our zsh theme, a popular powerline variant
+# choose a theme
 antigen theme agnoster
+#antigen theme gallois
 
 # Tell antigen that you're done.
 antigen apply
 
-
-
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-
 
 # stern completion
 source <(stern --completion=zsh)
@@ -141,6 +139,10 @@ uplog () {cli up --force-recreate "$@" && cli logs --tail=100 "$@"}
 alias morning='docker system prune -f && cli up && update'
 alias eod='cli down && neofetch && $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock && systemctl suspend'
 alias update='cli self-update && cli auto-update'
+# Stage all files, commit them with a message, and then push
+gcmp () {
+  ga . && gcmsg "$@" && gp
+}
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # use like `vend bm-models branch-name`
