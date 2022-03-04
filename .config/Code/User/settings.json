@@ -85,13 +85,13 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "terminal.integrated.tabs.location": "left",
   "terminal.integrated.tabs.enabled": false,
-  "workbench.colorCustomizations": {
-    "[Field Lights]": {
-      // "editor.background": "#08160936",
-      // "editor.lineHighlightBackground": "#0d240ee3",
-      // "sideBar.background": "#08160936"
-    }
-  },
+  // "workbench.colorCustomizations": {
+  //   "[Field Lights]": {
+  //     // "editor.background": "#08160936",
+  //     // "editor.lineHighlightBackground": "#0d240ee3",
+  //     // "sideBar.background": "#08160936"
+  //   }
+  // },
   "GitLive.Issue tracker integration": "Disabled",
   "apollographql.trace.server": "messages",
   "sync.gist": "c89e97ebd76baafa64b8c090a6bae6f5",
