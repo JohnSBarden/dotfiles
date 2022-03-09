@@ -75,8 +75,8 @@ antigen bundle guimeira/i3lock-fancy-multimonitor
 # antigen bundle carnage/teiler
 
 # choose a theme
-antigen theme agnoster
-#antigen theme gallois
+#antigen theme agnoster
+antigen theme gallois
 
 # Tell antigen that you're done.
 antigen apply
@@ -129,6 +129,7 @@ eval `keychain --eval --agents ssh /home/jbarden/.ssh/id_ed25519 >/dev/null 2>&1
 eval `keychain --eval --agents ssh /home/jbarden/.ssh/personal/id_ed25519 >/dev/null 2>&1`
 
 ## Aliases
+alias theme='alacritty-themes'
 alias gfrbm='gfo master:master && grbm'
 alias flushall='cli exec redis /usr/local/bin/redis-cli FLUSHALL'
 alias yys='yarn && yarn start'
@@ -141,7 +142,7 @@ alias eod='cli down && neofetch && $HOME/.antigen/bundles/guimeira/i3lock-fancy-
 alias update='cli self-update && cli auto-update'
 # Stage all files, commit them with a message, and then push
 gcmp () {
-  ga . && gcmsg "$@" && gp
+  git add . && git commit -m "$@" && git push
 }
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
