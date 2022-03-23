@@ -139,6 +139,7 @@ relog () {cli restart "$@" && cli logs --tail=100 "$@"}
 uplog () {cli up --force-recreate "$@" && cli logs --tail=100 "$@"}
 alias morning='docker system prune -f && cli up && update'
 alias eod='cli down && neofetch && $HOME/.antigen/bundles/guimeira/i3lock-fancy-multimonitor/lock && systemctl suspend'
+alias friday='cli down && sudo apt update && sudo apt -y upgrade && flushall && shutdown -h now'
 alias update='cli self-update && cli auto-update'
 # Stage all files, commit them with a message, and then push
 gcmp () {
