@@ -27,10 +27,15 @@ _nord(){
     ## Swap to theme
     gsettings set org.gnome.desktop.interface gtk-theme "Nordic Darker"
     gsettings set org.gnome.desktop.interface icon-theme "Breeze Nord Dark Icons"
+    
+    alacritty-themes Nord
 }
 
 _monokai(){
  ## TODO
+ alacritty-themes Monokai-Pro
+ ## TODO manually copy background color for now
+ ## vim ~/.config/alacritty/alacritty.yml
 }
 ## END THEMES
 
@@ -192,6 +197,10 @@ _polybar() {
   sudo make install
 }
 
+_alacritty() {
+  cargo install alacritty
+}
+
 _desktopDeps() {
   sudo apt install -y dunst compton tree arandr slop xclip
 }
@@ -238,6 +247,7 @@ _addAwsCli
 _addKube
 _addStern
 _rust
+_alacritty
 _peco
 _exa
 _bat
