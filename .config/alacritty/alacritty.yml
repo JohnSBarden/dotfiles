@@ -7,10 +7,14 @@
 # License:    MIT
 # References:
 #   https://github.com/alacritty/alacritty
+custom:
+  colors:
+    background: '#273136'
+
 colors:
   # Default colors
   primary:
-    background: '#2D2A2E'
+    background: '#273136'
     foreground: '#FCFCFA'
 
   # Normal colors

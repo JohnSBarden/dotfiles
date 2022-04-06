@@ -3,7 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # Set background and themeing
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-fill '/home/jbarden/Pictures/leaves.jpg' &
+exec_always --no-startup-id feh --bg-fill '/home/jbarden/Pictures/beach.jpg' &
 exec_always --no-startup-id /usr/lib/gsd-xsettings
 
 # monitor layout from arandr / xrandr
@@ -15,19 +15,18 @@ set $mod Mod4
 
 ## Define Color Scheme
 set $transparent #00000000
-set $background #273136
-set $buffer #394634
-set $foreground #a2e57b
-set $accent1 #9cd57b
-set $accent2 #FFAE57
-set $accent3 #e3d367
-set $accent4 #7cd5f1
-set $urgent #ff6d7e
-set $warning #f3a96a
-set $notify #e3d367
-set $success #a2e57b
-set $function #a2e57b
-
+set $background #0F1A19
+set $buffer #023D38
+set $foreground #F7E26D
+set $accent2 #098276
+set $accent1 #D7F1FA
+set $accent3 #092A79
+set $accent4 #098276
+set $urgent #9A0A0A
+set $warning #D4BFFF
+set $notify #FFD700
+set $success #18B5A5
+set $function #098276
 
 
 
@@ -290,7 +289,7 @@ exec --no-startup-id firefox
 # colour of                 border  bg      text    indicator child_border
 client.focused              $buffer $background $foreground $foreground $buffer
 client.focused_inactive     $buffer $background $accent1 $foreground $buffer
-client.unfocused            $buffer $buffer $accent3 $foreground $buffer
+client.unfocused            $buffer $buffer $accent2 $foreground $buffer
 client.urgent               $buffer $urgent $foreground $foreground $buffer
 client.placeholder          $buffer $background $foreground $foreground $buffer
 client.background           $background
