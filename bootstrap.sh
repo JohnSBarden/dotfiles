@@ -20,6 +20,7 @@ _i3() {
     sudo apt install -y i3 i3lock rofi scrot maim xclip xdotool
 }
 
+## THEMES
 _nord(){
     wget https://github.com/EliverLara/Nordic/releases/download/2.0.0/Nordic-darker-v40.tar.xz  && tar -xf ./Nordic-darker-v40.tar.xz -C ~/.themes/ && rm ./Nordic-darker-v40.tar.xz 
     wget https://dl2.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0MzkwODM2NSwidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI0NjI0YTAxYzZhM2NmZjNhZmQ2OWQwYjM0ODRiYzI2YTg2OTk4MmE0NzJjN2Q1Zjc5NmRhYTZkNTVhNjVkZDJlN2U5ZGJkMGQzNmU3MGZkMDZjOGI5Y2IwMjg3ZDNlMmNkZTcxMGYyNGVhZGM0MDZiMmY0ZGQ0ZWNlMzMzMDJiNyIsInQiOjE2NDQ0MzA0OTUsInN0ZnAiOiJiNmUwODQ1ZDQ1MzZlNDM3ZWYzMGIwMmFjOWJlYzUwMyIsInN0aXAiOiIxMzYuNDAuMy4yMTcifQ.A1D1DBsyXlJgq93mxskdoNu5KZz5vGyKpFC74K8JM7U/Breeze-Nord-Dark-Icons.tar.gz && tar -xzf Breeze-Nord-Dark-Icons.tar.gz -C ~/.themes && rm Breeze-Nord-Dark-Icons.tar.gz
@@ -27,6 +28,11 @@ _nord(){
     gsettings set org.gnome.desktop.interface gtk-theme "Nordic Darker"
     gsettings set org.gnome.desktop.interface icon-theme "Breeze Nord Dark Icons"
 }
+
+_monokai(){
+ ## TODO
+}
+## END THEMES
 
 _chromium() {
     sudo apt install -y chromium-browser
@@ -201,10 +207,7 @@ _microsoftTeams() {
 _exa() {
   # colorful ls utility
   cd /tmp
-  wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip &&
-  unzip exa-linux-x86_64-0.9.0 &&
-  chmod +x exa-linux-x86_64 &&
-  sudo mv exa-linux-x86_64 /usr/local/bin/exai
+  sudo cargo install exa
 }
 
 _bat() {
@@ -234,17 +237,19 @@ _docker
 _addAwsCli
 _addKube
 _addStern
+_rust
 _peco
 _exa
 _bat
 _go
-_rust
+
 
 # additional libs if desktop
 if [[ ! -z "$DESKTOP_SESSION" ]]; then
   _i3
   ## Choose a theme
   _nord
+  ##_monokai
   ##
   _desktopDeps
   _polybar
