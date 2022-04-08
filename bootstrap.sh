@@ -199,6 +199,7 @@ _polybar() {
 
 _alacritty() {
   cargo install alacritty
+  npm i -g alacritty-themes
 }
 
 _desktopDeps() {
