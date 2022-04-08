@@ -151,3 +151,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 vend() {
 	cd vendor/intellifarms/"$1" && git checkout master && git pull && git checkout origin/"$2" && cd ../../..
 }
+
+## thefuck
+eval $(thefuck --alias)
