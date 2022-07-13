@@ -1,6 +1,6 @@
 {
   "editor.fontSize": 13,
-  "editor.fontFamily": "'Fira Code', monospaced",
+  "editor.fontFamily": "'FiraCode Nerd Font', monospaced",
   "editor.fontLigatures": true,
   "editor.tabSize": 2,
   "terminal.integrated.fontSize": 13,
@@ -97,5 +97,6 @@
   "sync.gist": "c89e97ebd76baafa64b8c090a6bae6f5",
   "explorer.confirmDragAndDrop": false,
   "editor.bracketPairColorization.enabled": true,
+  "php.validate.executablePath": "/usr/bin/php",
   "editor.largeFileOptimizations": false
 }

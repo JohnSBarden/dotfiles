@@ -9,35 +9,35 @@
 #   https://github.com/alacritty/alacritty
 custom:
   colors:
-    background: '#273136'
+    background: "#273136"
 
 colors:
   # Default colors
   primary:
-    background: '#273136'
-    foreground: '#FCFCFA'
+    background: "#2E3440"
+    foreground: "#D8DEE9"
 
   # Normal colors
   normal:
-    black: '#403E41'
-    red: '#FF6188'
-    green: '#A9DC76'
-    yellow: '#FFD866'
-    blue: '#FC9867'
-    magenta: '#AB9DF2'
-    cyan: '#78DCE8'
-    white: '#FCFCFA'
+    black: "#3B4252"
+    red: "#BF616A"
+    green: "#A3BE8C"
+    yellow: "#EBCB8B"
+    blue: "#81A1C1"
+    magenta: "#B48EAD"
+    cyan: "#88C0D0"
+    white: "#E5E9F0"
 
   # Bright colors
   bright:
-    black: '#727072'
-    red: '#FF6188'
-    green: '#A9DC76'
-    yellow: '#FFD866'
-    blue: '#FC9867'
-    magenta: '#AB9DF2'
-    cyan: '#78DCE8'
-    white: '#FCFCFA'
+    black: "#4C566A"
+    red: "#BF616A"
+    green: "#A3BE8C"
+    yellow: "#EBCB8B"
+    blue: "#81A1C1"
+    magenta: "#B48EAD"
+    cyan: "#8FBCBB"
+    white: "#ECEFF4"
 
 window:
   opacity: 0.9
@@ -51,4 +51,6 @@ font:
   italic:
     family: Fira Code Nerd Font
   size: 10
-theme: Monokai-Pro
+theme: Nord
+
+title: alacritty

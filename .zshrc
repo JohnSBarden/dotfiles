@@ -120,13 +120,20 @@ export BROWSER="chromium-browser"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # work variables
-source ~/.agisuretrack
+## source ~/.agisuretrack
 export DEV_HOST=dev0.intellifarms.com
 
 export CLI_CP_SSH_USER=jbarden
 export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-eval `keychain --eval --agents ssh /home/jbarden/.ssh/id_ed25519 >/dev/null 2>&1`
-eval `keychain --eval --agents ssh /home/jbarden/.ssh/personal/id_ed25519 >/dev/null 2>&1`
+
+## manage keys
+eval `ssh-agent -s`
+eval `keychain --eval id_ed25519`
+eval `keychain --eval ~/.ssh/personal/id_ed25519`
+eval `keychain --eval id_ed25519_work`
+#eval `keychain -l`
+
+
 
 ## Aliases
 alias theme='alacritty-themes'
@@ -135,6 +142,8 @@ alias flushall='cli exec redis /usr/local/bin/redis-cli FLUSHALL'
 alias yys='yarn && yarn start'
 alias yyb='yarn && yarn build'
 alias push='yarn build && yalc push'
+alias ywba='ENABLE_BUNDLE_ANALYZER=true yarn start'
+
 relog () {cli restart "$@" && cli logs --tail=100 "$@"}
 uplog () {cli up --force-recreate "$@" && cli logs --tail=100 "$@"}
 alias morning='docker system prune -f && cli up && update'
@@ -146,7 +155,7 @@ gcmp () {
   git add . && git commit -m "$@" && git push
 }
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/bin/php:$PATH"
 # use like `vend bm-models branch-name`
 vend() {
 	cd vendor/intellifarms/"$1" && git checkout master && git pull && git checkout origin/"$2" && cd ../../..
