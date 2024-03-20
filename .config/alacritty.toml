@@ -1,0 +1,19 @@
+import = ["/Users/jbarden/.config/alacritty/themes/themes/catppuccin.toml"]
+theme = "Catpuccin"
+title = "alacritty"
+
+[font]
+size = 14
+
+[font.bold]
+family = "FiraCode Nerd Font"
+
+[font.italic]
+family = "FiraCode Nerd Font"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Retina"
+
+[window]
+opacity = 0.9
