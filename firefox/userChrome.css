@@ -1,0 +1,8 @@
+/* TODO fill  in from desktop */
+#TabsToolbar {
+  visibility: collapse;
+}
+
+#sidebar-box #sidebar-header {
+  display: none !important;
+}
