@@ -67,8 +67,6 @@ antigen bundle lukechilds/zsh-nvm > /dev/null 2>&1
 #override ctrl to use peco for fuzzy searching of history
 antigen bundle jimeh/zsh-peco-history > /dev/null 2>&1
 
-#lock screen, we bind to this in our i3 keybindings 
-antigen bundle guimeira/i3lock-fancy-multimonitor > /dev/null 2>&1
 #load up teiler for imagie / screencasting
 # todo :: 
 # antigen bundle carnage/teiler > /dev/null 2>&1
@@ -132,8 +130,6 @@ export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # eval `keychain --eval ~/.ssh/personal/id_ed25519`
 # eval `keychain --eval id_ed25519_work`
 #eval `keychain -l`
-
-
 
 ## Aliases
 alias theme='alacritty-themes'

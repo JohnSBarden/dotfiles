@@ -40,6 +40,7 @@ Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'morhetz/gruvbox'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'sainnhe/sonokai'
+Plugin 'catpuccin/nvim'
 
 " emmet completion
 Plugin 'mattn/emmet-vim'
@@ -212,4 +213,5 @@ let g:sonokai_style = 'maia'
 
 " set colorscheme
 " colorscheme nord
-colorscheme sonokai
+" colorscheme sonokai
+colorscheme catpuccin
