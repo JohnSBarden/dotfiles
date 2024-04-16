@@ -112,7 +112,7 @@ export EDITOR="$VISUAL"
 # configure browser
 # TODO - Allow to be configurable on darwin/osx?
 export BROWSER="firefox"
-# export PATH=$PATH:/Applications/Firefox.app/Contents/MacOS/firefox
+export PATH=$PATH:/Applications/Firefox.app/Contents/MacOS/firefox-bin
 
 # add krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -152,13 +152,13 @@ eval $(thefuck --alias)
 
 #### MANAGED BY C2FO ####
 # Shortcut to C2FO ZSH Config
-export C2FO_ZSH=$HOME/.c2fo
+# export C2FO_ZSH=$HOME/.c2fo
 
 # Overrides for Colima
-export DOCKER_HOST="unix:///Users/$USERNAME/.colima/docker.sock"
+# export DOCKER_HOST="unix:///Users/$USERNAME/.colima/docker.sock"
 
-source $C2FO_ZSH/zsh/c2fo.zsh
-source $C2FO_ZSH/zsh/fnm.zsh
+# source $C2FO_ZSH/zsh/c2fo.zsh
+# source $C2FO_ZSH/zsh/fnm.zsh
 
 #### END MANAGED BY C2FO ####
 
@@ -167,3 +167,25 @@ export PATH="/Users/jbarden/Library/Application Support/fnm:$PATH"
 eval "`fnm env`"
 
 export PATH="$HOME:~/go/bin:$PATH"
+
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
