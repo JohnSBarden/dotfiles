@@ -1,0 +1,9 @@
+[core]
+	excludesfile = /Users/h1575047/.gitignore.global
+[user]
+	name = John S. Barden
+[includeIf "gitdir:~/personal/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/workspace/"]
+	path = ~/.gitconfig-hyvee
+	

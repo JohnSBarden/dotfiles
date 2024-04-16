@@ -1,0 +1,6 @@
+[user]
+name = John S. Barden
+email = john.barden@hy-vee.com
+
+[core]
+sshCommand = ssh -i ~/.ssh/id_ed25519_work
