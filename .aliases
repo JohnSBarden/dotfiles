@@ -1,35 +1,51 @@
+#!/bin/bash
 # move to bins
 #alias mount-henry='sudo mount -t cifs -o user=guest,pass=guest //HENRY/public /mnt/henry'
 #alias mount-perten='sudo mount -t cifs -o user=ddremote,pass=tomisawesome,file_mode=0777,dir_mode=0777       //10.128.20.38/Users /mnt/perten'
 
+setopt promptsubst # Enable coprocesses for the -p option
+
 # Silenced macro
 # Runs the command in the background, with absolutely zero output.
 silenced() {
-    "$@" &> /dev/null &;
+    "$@" &>/dev/null &
 }
 
-function kuberun {
-    [[ $# -lt 2 ]] && echo "Invalid number of arguments, [SERVICE_NAME] [IMAGE_NAME] [...COMMAND]"; return 1;
+kuberun() {
+    if [[ $# -lt 2 ]] && echo "Invalid number of arguments, [SERVICE_NAME] [IMAGE_NAME] [...COMMAND]"; then
+        return 1
+    fi
 
     SERVICE_NAME=$1
     IMAGE_NAME=$2
-    shift 2;
-    kubectl run $SERVICE_NAME --image=$IMAGE_NAME --restart=Never --quiet -i --rm -- "$@"
+    shift 2
+    "kubectl run $SERVICE_NAME --image=$IMAGE_NAME --restart=Never --quiet -i --rm -- $*"
 }
 
-function gnew {
-    git add . && git stash && git checkout master && git checkout -b $1 && git stash pop
+# get listening ports, optionally for a specific port
+ports() {
+    if [[ $# -eq 0 ]]; then
+        lsof -i -P -n | grep LISTEN
+    else
+        "lsof -i -P -n | grep LISTEN | grep $1"
+    fi
 }
 
-function gcamp {
-   git add . && \
-   git commit -am "$1" && \
-   git push
+gnew() {
+    "git add . && \
+     git stash && git checkout master && \
+     git checkout -b $1 && git stash pop"
+}
+
+gcamp() {
+    "git add . && \
+     git commit -am \"$1\" && \
+     git push"
 }
 
 # Stage all files, commit them with a message, and then push
-gcmp () {
-  git add . && git commit -m "$@" && git push
+gcmp() {
+    git add . && git commit -m "$@" && git push
 }
 
 # new k get ns macro
@@ -49,15 +65,19 @@ alias vi="v"
 #neovim vimdiff
 alias vimdiff='nvim -d'
 
-#make sure nvm is our editor (probably not needed with aliasing up above)
-export EDITOR=code
+# explicitly set our editor for git
+export EDITOR=vim
 
-# alias diffs-from-master="git --no-pager log --no-merges master.. "
-# alias diffs-from-master-count="diffs-from-master | grep commit | wc -l"
-# alias diffs-from-master="git --no-pager log --no-merges master.. "
-# alias diffs-from-master-count="diffs-from-master | grep commit | wc -l"
-alias gfm='gco main && gf && gl'
-alias gfrb='gfo $(git_main_branch):$(git_main_branch) && grb origin/$(git_main_branch)'
+# Base git shortcuts are from oh-my-zsh's git aliases
+# https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index
+alias gfm='gco $(git_main_branch) && gf && gl'
+alias gfrb='gfo $(git_main_branch) && grb origin/$(git_main_branch)'
+alias gfrbm=gfrb
+# fetch/prune our remote, then prune the local branches that are dead
+gprune() {
+    git fetch --all --prune #   git fetch --all --prune
+    git branch --v | grep "\[gone\]" | awk '{print $1}' | xargs git branch -D
+}
 
 alias theme='alacritty-themes'
 
@@ -68,9 +88,11 @@ alias dc='docker-compose'
 alias yys='yarn && yarn start'
 alias yyb='yarn && yarn build'
 alias push='yarn build && yalc push'
-alias ywba='ENABLE_BUNDLE_ANALYZER=true yarn start'
+# alias ywba='ENABLE_BUNDLE_ANALYZER=true yarn start'
 alias yyd='yarn && yarn build && yarn dev'
 alias yd='yarn && yarn dev'
+alias yl='yarn lint'
+alias ytw='yarn test --watch'
 
 #make
 alias maked='make dev'
@@ -83,17 +105,23 @@ alias pl='p lint'
 
 alias sz='source ~/.zshrc'
 
-## C2FO specific
+# add scripts to path
+export PATH=$PATH:$HOME/scripts
+# shortcuts for my own scripts
+alias gdirty='git_dirty.sh'
+alias gitdirty=gdirty
+
+#### C2FO specific
 ## see https://honeycomb.jira.com/wiki/spaces/ENG/pages/1083408420/C2FO+Mono+Repo+Documentation for more info
 # start app in watch mode
 # psa() {
 #   pnpm -F @c2fo/$1 start
 # }
-# # test app 
+# # test app
 # pt() {
 #   pnpm -F @c2fo/$1 test "${@:2}"
 # }
-# # test:watch app 
+# # test:watch app
 # ptw() {
 #   pnpm -F @c2fo/$1 test:watch "${@:2}"
 # }
@@ -173,21 +201,21 @@ alias sz='source ~/.zshrc'
 # }
 
 # alias shim='HEALTHCHECK_APP_NAME="early-pay-shim-api-jsb" \
-            # DB_CONNECTION_NAMES=fss \
-            # FSS_DB_USER="pollenadmin" \
-            # FSS_DB_PASS="su!4you11aaAAaa" \
-            # FSS_DB_LOGGING=false \
-            # FSS_DB_HOST="fss-db.c2fo.com" \
-            # FSS_BASE_URL="https://fss-gateway.c2fo.com/" \
-            # PUBLIC_API_APPLICATION_AUTH_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImFwcGxpY2F0aW9uIjp7Im5hbWUiOiJyZXF1ZXN0LWFwaSIsImtleSI6IkVHRUVJQUhYc0xTWmNWdlZiT0NPayIsInV1aWQiOiI4OTEzNzg0Ny01N2MwLTQwZDEtYTRkOS00NDc1NTU2YTZmYzEiLCJhcHBsaWNhdGlvbktleVNlY3JldFV1aWQiOiIxNTkwMDRlMS0yMTZiLTExZWMtYWI3Ni00ZmY5Mjc3ODBlMDgiLCJmZWF0dXJlcyI6W119LCJ0eXBlIjoiYXBwbGljYXRpb25fYXV0aCJ9LCJpYXQiOjE2MzI5NTA0MzQsImV4cCI6MTY0ODUwMjQzNCwiYXVkIjpbIioiXSwiaXNzIjoiYzJmby1hdXRoIn0.6zlQoQ3W3Fwpdg2OI364mbb6Sa6Lny2IaBAj1FfQjpU" \
-            # PUBLIC_API_URL="https://fss-gateway.c2fo.com/api/public/graphql" \
-            # C2FO_NEST_AUTH_SERVICE_URL=https://fss-auth.c2fo.com \
-            # C2FO_NEST_AUTH_SERVICE_SECRET="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImFwcGxpY2F0aW9uIjp7Im5hbWUiOiJjdXN0b21lci1hcGkiLCJrZXkiOiI2OWoxTXlvdE1GSnpHRjZSQ0Y4R0ZrIiwidXVpZCI6IjFlNzdmNTY2LTQ2ZDYtNGQ5MS1hNGJjLWM2ZTQ3NTA2MDJmNCIsImFwcGxpY2F0aW9uS2V5U2VjcmV0VXVpZCI6ImNhMTMxM2IwLWJjMzEtMTFlYy05MWEyLTM3MmQ4OGJhYzk3YSIsImZlYXR1cmVzIjpbXX0sInR5cGUiOiJhcHBsaWNhdGlvbl9hdXRoIn0sImlhdCI6MTY0OTk2ODI1NywiZXhwIjoxNjY1NTIwMjU3LCJhdWQiOlsiKiJdLCJpc3MiOiJjMmZvLWF1dGgifQ.ZbNsSQUYd5mDHMYr9O6QLoS6YqqRGEyJxKurgs_MoxM" \
-            # FSS_DB_IDLE_SOCKET_TIMEOUT=10000 \
-            # HTTP_SERVICE_NAMES=fss \
-            # FSS_BASE_URL="https://fss-gateway.c2fo.com/" \
-            # DEV_AUTH=true \
-            # pnpm -F @c2fo/early-pay-shim start:debug'
+# DB_CONNECTION_NAMES=fss \
+# FSS_DB_USER="pollenadmin" \
+# FSS_DB_PASS="su!4you11aaAAaa" \
+# FSS_DB_LOGGING=false \
+# FSS_DB_HOST="fss-db.c2fo.com" \
+# FSS_BASE_URL="https://fss-gateway.c2fo.com/" \
+# PUBLIC_API_APPLICATION_AUTH_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImFwcGxpY2F0aW9uIjp7Im5hbWUiOiJyZXF1ZXN0LWFwaSIsImtleSI6IkVHRUVJQUhYc0xTWmNWdlZiT0NPayIsInV1aWQiOiI4OTEzNzg0Ny01N2MwLTQwZDEtYTRkOS00NDc1NTU2YTZmYzEiLCJhcHBsaWNhdGlvbktleVNlY3JldFV1aWQiOiIxNTkwMDRlMS0yMTZiLTExZWMtYWI3Ni00ZmY5Mjc3ODBlMDgiLCJmZWF0dXJlcyI6W119LCJ0eXBlIjoiYXBwbGljYXRpb25fYXV0aCJ9LCJpYXQiOjE2MzI5NTA0MzQsImV4cCI6MTY0ODUwMjQzNCwiYXVkIjpbIioiXSwiaXNzIjoiYzJmby1hdXRoIn0.6zlQoQ3W3Fwpdg2OI364mbb6Sa6Lny2IaBAj1FfQjpU" \
+# PUBLIC_API_URL="https://fss-gateway.c2fo.com/api/public/graphql" \
+# C2FO_NEST_AUTH_SERVICE_URL=https://fss-auth.c2fo.com \
+# C2FO_NEST_AUTH_SERVICE_SECRET="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImFwcGxpY2F0aW9uIjp7Im5hbWUiOiJjdXN0b21lci1hcGkiLCJrZXkiOiI2OWoxTXlvdE1GSnpHRjZSQ0Y4R0ZrIiwidXVpZCI6IjFlNzdmNTY2LTQ2ZDYtNGQ5MS1hNGJjLWM2ZTQ3NTA2MDJmNCIsImFwcGxpY2F0aW9uS2V5U2VjcmV0VXVpZCI6ImNhMTMxM2IwLWJjMzEtMTFlYy05MWEyLTM3MmQ4OGJhYzk3YSIsImZlYXR1cmVzIjpbXX0sInR5cGUiOiJhcHBsaWNhdGlvbl9hdXRoIn0sImlhdCI6MTY0OTk2ODI1NywiZXhwIjoxNjY1NTIwMjU3LCJhdWQiOlsiKiJdLCJpc3MiOiJjMmZvLWF1dGgifQ.ZbNsSQUYd5mDHMYr9O6QLoS6YqqRGEyJxKurgs_MoxM" \
+# FSS_DB_IDLE_SOCKET_TIMEOUT=10000 \
+# HTTP_SERVICE_NAMES=fss \
+# FSS_BASE_URL="https://fss-gateway.c2fo.com/" \
+# DEV_AUTH=true \
+# pnpm -F @c2fo/early-pay-shim start:debug'
 # alias shimnodev='HEALTHCHECK_APP_NAME="early-pay-shim-api-jsb" \
 #             DB_CONNECTION_NAMES=fss \
 #             FSS_DB_USER="pollenadmin" \
@@ -217,5 +245,147 @@ alias sz='source ~/.zshrc'
 # alias proxycustomerdb='kubectl-proxydb customer-production.cluster-cuaaknglbk8v.us-west-2.rds.amazonaws.com 5490:5432'
 # alias proxyinvoicedb='kubectl-proxydb early-pay-invoice-api-prod.cluster-cuaaknglbk8v.us-west-2.rds.amazonaws.com 5491:5432'
 # alias proxytransactiondb='kubectl-proxydb early-pay-transaction-api-production.cluster-cuaaknglbk8v.us-west-2.rds.amazonaws.com 5492:5432'
+####
 
+#### Hy-Vee specific
+alias ymobile='cd ~/workspace/hy-vee-grocery && yarn && cd ios && pod install && cd .. && yst'
+# defaults to pharmacy-api, TODO add a chooser if you don't specify
+prodproxy() {
+    if [ -z "$1" ]; then
+        app='pharmacy-api'
+    else
+        app=$1
+    fi
+    cloud_sql_proxy -credential_file ~/Desktop/service_account.json -instances="<snip>"
+}
+alias yapptype='y codegen:dev && y typescript:typecheck'
+# requires repo to be at the same level as whammy
+alias srcwhammy='cp -r ../react-web-and-mobile-ui-components/src/lib/ node_modules/@hy-vee/react-web-and-mobile-ui-components'
+jwt_me() {
+    jwt=$(curl --silent --request POST \
+        --url "<snip>")
+
+    echo "$jwt" | jq .
+
+    # get just the access token, with no quotes or newline,
+    # and copy it to the clipboard
+    echo "$jwt" | jq .access_token | tr -d '"' | tr -d "\n" | pbcopy
+
+    echo
+    echo "Copied access token to your clipboard."
+}
+
+spongebobify() {
+    text=$(pbpaste)
+    result=""
+    i=0
+    while [[ $i -lt ${#text} ]]; do
+        char=${text:$i:1}
+        if [[ "$char" =~ [[:alnum:]] ]]; then # Check if the character is alphanumeric
+
+            if [[ $((i % 2)) -eq 0 ]]; then
+                result+=$(echo "$char" | tr '[:lower:]' '[:upper:]')
+            else
+                result+=$(echo "$char" | tr '[:upper:]' '[:lower:]')
+            fi
+        else
+            result+="$char"
+        fi
+        i=$((i + 1))
+    done
+    echo "$result" | pbcopy
+    echo "sPoNgEbObIfIeD tExT cOpIeD tO cLiPbOaRd!"
+}
+alias sb=spongebobify
+
+## From https://stackoverflow.com/questions/4404172/how-to-tag-an-older-commit-in-git/21759466#21759466
+# temptag() {
+#     # Set the HEAD to the old commit that we want to tag
+#     git checkout 202d31a
+
+#     # temporarily set the date to the date of the HEAD commit, and add the tag
+#     GIT_COMMITTER_DATE="$(git show --format=%aD | head -1)" \
+#         git tag -a v2025.01.06 -m "v2025.01.06"
+
+#     # push to origin
+#     git push origin --tags
+
+# }
+
+## From https://stackoverflow.com/questions/4404172/how-to-tag-an-older-commit-in-git/21759466#21759466
+create_tag() {
+    # save current directory
+    current_dir=$(pwd)
+
+    cd $HOME/workspace || exit
+
+    # prompt for user input
+    echo -n "Enter the local name of the git repository: "
+    read repo
+    echo -n "Enter the commit hash to tag: "
+    read commit
+    echo -n "Enter the tag name: "
+    read tag
+
+    # cd into the right repo
+    cd $repo || (
+        echo "Invalid repo provided.  Exiting..."
+        exit 1
+    )
+    # Set the HEAD to the old commit that we want to tag
+    git checkout $commit || (
+        echo "Invalid commit provided.  Exiting..."
+        exit 1
+    )
+
+    # temporarily set the date to the date of the HEAD commit, and add the tag
+    GIT_COMMITTER_DATE="$(git show --format=%aD | head -1)" \
+        git tag -a $tag -m "$tag"
+
+    # push to origin
+    git push origin --tags
+
+    git checkout main
+
+    cd $current_dir || exit
+}
+
+# same as above, without directory changing
+tag() {
+    # prompt for user input
+    echo -n "Enter the commit hash to tag: "
+    read commit
+    echo -n "Enter the tag name: "
+    read tag
+
+    # Set the HEAD to the old commit that we want to tag
+    if ! git checkout "$commit"; then
+        echo "Invalid commit provided. Exiting..."
+        return 1
+    fi
+
+    # temporarily set the date... and add the tag.  Check for errors.
+    if ! GIT_COMMITTER_DATE="$(git show --format=%aD | head -1)" git tag -a "$tag" -m "$tag"; then
+        echo "Failed to create tag. Exiting..."
+        return 1
+    fi
+
+    # push to origin.  Check for errors.
+    if ! git push origin --tags; then
+        echo "Failed to push tags. Exiting..."
+        return 1
+    fi
+
+    git checkout main
+    return 0
+}
+####
+
+# shellcheck disable=SC2145
+# shellcheck disable=SC2139
 alias cask="brew install --cask $@"
+alias burp="brew update && brew upgrade && brew cleanup"
+alias morning='wd work && clear && neofetch && echo Good morning! Setting up your repos... && $HOME/scripts/auto_pull.sh'
+
+# ruby
+alias b="bundle"

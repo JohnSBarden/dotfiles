@@ -1,0 +1,29 @@
+
+[font]
+size = 14
+
+  [font.bold]
+  family = "FiraCode Nerd Font"
+
+  [font.italic]
+  family = "FiraCode Nerd Font"
+
+  [font.normal]
+  family = "FiraCode Nerd Font"
+  style = "Retina"
+
+[window]
+# opacity = 0.9 # for dark
+# opacity = 0.75 # for light
+opacity = 0.8
+decorations = "none"
+
+[general]
+import = [
+  "~/.config/alacritty/active.toml",
+  "~/.config/alacritty/themes/everforest_light.toml"
+  # "~/.config/alacritty/themes/everforest_dark.toml"
+]
+
+[terminal]
+shell = "/bin/zsh"

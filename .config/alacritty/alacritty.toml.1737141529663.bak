@@ -1,0 +1,25 @@
+
+[font]
+size = 14
+
+  [font.bold]
+  family = "FiraCode Nerd Font"
+
+  [font.italic]
+  family = "FiraCode Nerd Font"
+
+  [font.normal]
+  family = "FiraCode Nerd Font"
+  style = "Retina"
+
+[window]
+opacity = 0.8
+decorations = "none"
+
+[general]
+import = [
+  "/Users/h1575047/.nvm/versions/node/v20.11.0/lib/node_modules/alacritty-themes/themes/everforest_light.toml"
+]
+
+[terminal]
+shell = "/bin/zsh"

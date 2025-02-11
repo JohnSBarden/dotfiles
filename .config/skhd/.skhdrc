@@ -1,0 +1,41 @@
+# move managed window
+shift + ctrl - left : yabai -m window --warp west
+shift + ctrl - down : yabai -m window --warp south
+shift + ctrl - up : yabai -m window --warp north
+shift + ctrl - right : yabai -m window --warp east
+
+# balance size of windows
+shift + alt - 0 : yabai -m space --balance
+
+# toggle window zoom
+# alt - d : yabai -m window --toggle zoom-parent
+alt - f : yabai -m window --toggle zoom-fullscreen \
+  yabai -m window --focus
+
+# toggle window split type
+alt - e : yabai -m window --toggle split
+
+# float / unfloat window and center on screen
+# TODO disable SIP to get sticky working
+alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
+yabai -m window --toggle sticky
+yabai -m window --toggle topmost
+
+# toggle sticky(+float), picture-in-picture
+# alt - p : yabai -m window --toggle sticky --toggle pip
+
+# alt - return : open -na /Applications/Alacritty.app/Contents/MacOS/alacritty
+# ctrl - 1 : open -a /Applications/Alacritty.app/Contents/MacOS/alacritty
+alt - return : open -na /Applications/Warp.app/Contents/MacOS/stable
+ctrl - 1 : open -a /Applications/Warp.app/Contents/MacOS/stable
+# ctrl - 2 : open -a /Applications/Firefox.app/Contents/MacOS/firefox
+ctrl - 2 : open -a /Applications/Zen\ Browser.app/Contents/MacOS/zen
+ctrl - 3 : open -a /Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron
+ctrl - 4 : open -a /Applications/Datagrip.app/Contents/MacOS/Datagrip
+ctrl - 5 : open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
+# ctrl - 6 : open -a /Applications/Microsoft\ Teams\ \(work\ or\ school\).app/Contents/MacOS.app/Contents/MacOS/MSTeams
+ctrl - 7 : open -a /Applications/Microsoft\ Outlook.app/Contents/MacOS/Microsoft\ Outlook
+ctrl - 8 : open -a /Applications/Spotify.app/Contents/MacOS/Spotify
+# ctrl - 9 : open -a /Applications/Insomnia.app/Contents/MacOS/Insomnia
+ctrl - 9 : open -a /Applications/Postman.app/Contents/MacOS/Postman
+# ctrl - 0 : open -a /Applications/<app>.app/Contents/MacOS/<app>

@@ -1,18 +1,18 @@
-import:
- - ~/.config/alacritty/themes/themes/catppuccin.yaml
+# import:
+#  - ~/.config/alacritty/themes/themes/catppuccin.yaml
 
-window:
-  opacity: 0.9
+# window:
+#   opacity: 0.9
 
-font:
-  normal:
-    family: FiraCode Nerd Font
-    style: Retina
-  bold:
-    family: FiraCode Nerd Font
-  italic:
-    family: FiraCode Nerd Font
-  size: 14
-theme: Catpuccin
+# font:
+#   normal:
+#     family: FiraCode Nerd Font
+#     style: Retina
+#   bold:
+#     family: FiraCode Nerd Font
+#   italic:
+#     family: FiraCode Nerd Font
+#   size: 14
+# theme: Catpuccin
 
-title: alacritty
+# title: alacritty

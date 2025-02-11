@@ -1,19 +1,25 @@
-import = ["/Users/jbarden/.config/alacritty/themes/themes/catppuccin.toml"]
-theme = "Catpuccin"
-title = "alacritty"
 
 [font]
 size = 14
 
-[font.bold]
-family = "FiraCode Nerd Font"
+  [font.bold]
+  family = "FiraCode Nerd Font"
 
-[font.italic]
-family = "FiraCode Nerd Font"
+  [font.italic]
+  family = "FiraCode Nerd Font"
 
-[font.normal]
-family = "FiraCode Nerd Font"
-style = "Retina"
+  [font.normal]
+  family = "FiraCode Nerd Font"
+  style = "Retina"
 
 [window]
-opacity = 0.9
+opacity = 0.8
+decorations = "none"
+
+[general]
+import = [
+  "/Users/h1575047/.nvm/versions/node/v20.11.0/lib/node_modules/alacritty-themes/themes/everforest_dark.toml"
+]
+
+[terminal]
+shell = "/bin/zsh"
